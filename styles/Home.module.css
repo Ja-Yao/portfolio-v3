@@ -10,6 +10,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: min(100% - 2rem, 1500px);
+  margin-inline: auto;
 }
 
 .footer {
