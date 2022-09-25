@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Home: NextPage = () => {
   const theme = useTheme();
@@ -18,22 +18,11 @@ const Home: NextPage = () => {
       </Head>
 
       <Navbar />
-      <Box component={'main'} className={styles.main}>
+      <Box component={'main'} className={styles.main} sx={{ border: "3px solid blue" }}>
+
       </Box>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{color: theme.palette.primary.onSurface}}
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }
