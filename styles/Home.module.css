@@ -1,17 +1,19 @@
 .container {
   padding: 0 2rem;
+  overflow-x: hidden;
 }
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
+  /* padding: 4rem 0; */
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   width: min(100% - 2rem, 1500px);
   margin-inline: auto;
+  overflow-x: hidden;
 }
 
 .footer {

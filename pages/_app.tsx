@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { useMediaQuery } from '@mui/material';
+import { createContext, useMemo, useState } from 'react';
+import { PaletteMode } from '@mui/material';
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -10,17 +10,17 @@ interface PaletteColor {
   dark?: string;
   contrastText?: string;
 
-  onPrimary: string;
-  primaryContainer: string;
-  onPrimaryContainer: string;
+  onPrimary?: string;
+  primaryContainer?: string;
+  onPrimaryContainer?: string;
 
-  background: string;
-  onBackground: string;
-  surface: string;
-  onSurface: string;
-  surfaceVariant: string;
-  onSurfaceVariant: string;
-  outline: string;
+  background?: string;
+  onBackground?: string;
+  surface?: string;
+  onSurface?: string;
+  surfaceVariant?: string;
+  onSurfaceVariant?: string;
+  outline?: string;
 }
 
 declare module "@mui/material/styles/createPalette" {
@@ -65,14 +65,6 @@ const secondaryLight: PaletteColor = {
   onPrimary: '#fbfbfd',
   primaryContainer: '#d5e8cf',
   onPrimaryContainer: '#101f10',
-
-  background: '#fbfbfd',
-  onBackground: '#1b1c1a',
-  surface: '#fbfbfd',
-  onSurface: '#1b1c1a',
-  surfaceVariant: '#e1e3dc',
-  onSurfaceVariant: '#454843',
-  outline: '#757872',
 };
 
 const primaryDark: PaletteColor = {
@@ -96,32 +88,35 @@ const secondaryDark: PaletteColor = {
   onPrimary: '#fbfbfd',
   primaryContainer: '#d5e8cf',
   onPrimaryContainer: '#101f10',
-
-  background: '#fbfbfd',
-  onBackground: '#1b1c1a',
-  surface: '#fbfbfd',
-  onSurface: '#1b1c1a',
-  surfaceVariant: '#e1e3dc',
-  onSurfaceVariant: '#454843',
-  outline: '#757872',
 };
 
+export const ColorModeContext = createContext({ toggleColorMode: () => { } });
+
 function MyApp({ Component, pageProps }: AppProps) {
-  const prefersDarkMode: boolean = useMediaQuery('(prefers-color-scheme: dark)');
+  const [mode, setMode] = useState<PaletteMode>("dark");
+
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode: PaletteMode) => (prevMode === "light" ? "dark" : "light"));
+      },
+    }),
+    [],
+  );
 
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-          ...(!prefersDarkMode
+          mode: mode,
+          ...(mode === "dark"
             ? {
-              primary: primaryLight,
-              secondary: secondaryLight,
-            }
-            : {
               primary: primaryDark,
               secondary: secondaryDark,
+            }
+            : {
+              primary: primaryLight,
+              secondary: secondaryLight,
             }),
         },
         typography: {
@@ -130,14 +125,34 @@ function MyApp({ Component, pageProps }: AppProps) {
             textTransform: "none"
           }
         },
+        components: {
+          MuiButton: {
+            variants: [
+              {
+                props: {variant: "text"},
+                style: {
+                  color: "#4ca771",
+                }
+              },
+              {
+                props: { variant: "contained" },
+                style: {
+                  color: "#101f10"
+                }
+              }
+            ]
+          }
+        }
       }),
-    [prefersDarkMode],
+    [mode],
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   )
 }
 

@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 
 import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import Navbar from '../components/Navbar';
 
 const Home: NextPage = () => {
   const theme = useTheme();
@@ -16,8 +17,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Navbar />
       <Box component={'main'} className={styles.main}>
-
       </Box>
 
       <footer className={styles.footer}>
