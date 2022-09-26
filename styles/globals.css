@@ -27,7 +27,7 @@ Not supported in Firefox and IE */
 
 /* total width */
 body::-webkit-scrollbar {
-  background-color: #fff;
+  background-color: #fbfbfd;
   width: 8px;
 }
 
