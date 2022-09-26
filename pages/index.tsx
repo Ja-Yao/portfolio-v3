@@ -1,14 +1,33 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image';
 import styles from '../styles/Home.module.css'
 
-import { Box } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Home: NextPage = () => {
   const theme = useTheme();
+
+  const sentence = {
+    hidden: {opacity: 1},
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0.5,
+        staggerChildren: 0.08,
+      }
+    }
+  }
+  const letter = {
+    hidden: {opacity: 0, y: 50},
+    visible: {opacity: 1, y: 0}
+  }
+  const greeting = "Hello";
+
   return (
     <div className={styles.container} style={{ backgroundColor: theme.palette.primary.surface }}>
       <Head>
@@ -18,8 +37,59 @@ const Home: NextPage = () => {
       </Head>
 
       <Navbar />
-      <Box component={'main'} className={styles.main} sx={{ border: "3px solid blue" }}>
-
+      <Box component={'main'} className={styles.main} >
+        <motion.div id='landing-section' style={{width: "100%", maxWidth: "1500px", marginTop: "7.5vh" }}>
+          <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
+            <Stack direction="column" spacing={2} maxWidth="40%">
+              <motion.h2
+                variants={sentence}
+                initial="hidden"
+                animate="visible"
+                style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
+              >
+                {
+                  greeting.split("").map((char, index: number) => {
+                    return (
+                      <motion.span key={char + "-" + index} variants={letter}>
+                        {char}
+                      </motion.span>
+                    )
+                  })
+                }
+              </motion.h2>
+              <motion.div
+                initial={{ opacity: 0, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
+              >
+                <Typography variant='h3'>
+                  I'm
+                  <span lang='en' style={{ color: "#4ca771" }}> Jacob</span>
+                  <br />
+                  a
+                  <span lang='en' style={{ color: "#4ca771" }}> Student </span>
+                  at Northeastern
+                </Typography>
+              </motion.div>
+              <motion.p
+                initial={{ opacity: 0, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
+              >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </motion.p>
+            </Stack>
+            <motion.div
+              initial={{ opacity: 0, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+            >
+              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" width={750} height={660} style={{ borderRadius: "32px" }} />
+            </motion.div>
+          </Stack>
+        </motion.div>
       </Box>
 
       <Footer />
