@@ -50,15 +50,15 @@ const Navbar: FC<Props> = () => {
                 />
               </IconButton>
             </Tooltip>
-            <Button variant="text" href="/about" sx={{ borderRadius: "100px" }}>
+            <Button variant="text" href="/about" sx={{ borderRadius: "16px" }}>
               About
             </Button>
 
-            <Button variant="text" href="/work" sx={{ borderRadius: "100px" }}>
+            <Button variant="text" href="/work" sx={{ borderRadius: "16px" }}>
               Work
             </Button>
 
-            <Button variant="contained" href="/contact" sx={{ borderRadius: "100px" }}>
+            <Button variant="contained" href="/contact" sx={{ borderRadius: "16px" }}>
               Contact
             </Button>
           </Stack>
