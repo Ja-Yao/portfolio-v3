@@ -1,14 +1,14 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image';
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next"
+import Head from "next/head"
+import Image from "next/image";
+import styles from "../styles/Home.module.css"
 
-import { Box, Fab, Stack, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { motion, Variants } from 'framer-motion';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { BubbleChartOutlined, WorkOutlineRounded } from '@mui/icons-material';
+import { Box, Fab, Stack, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { motion, Variants } from "framer-motion";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { BubbleChartOutlined, WorkOutlineRounded } from "@mui/icons-material";
 
 const Home: NextPage = () => {
   const theme = useTheme();
@@ -55,9 +55,9 @@ const Home: NextPage = () => {
       </Head>
 
       <Navbar />
-      <Box component={'main'} className={styles.main} >
+      <Box component={"main"} className={styles.main} >
         {/* Landing section */}
-        <motion.div id='landing-section' viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "7.5vh" }}>
+        <motion.div id="landing-section" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "7.5vh" }}>
           <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
             <Stack direction="column" spacing={2} maxWidth="40%">
               <motion.h2
@@ -82,12 +82,12 @@ const Home: NextPage = () => {
                 transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
                 style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
               >
-                <Typography variant='h3'>
-                  I'm
-                  <span lang='en' style={{ color: "#4ca771" }}> Jacob</span>
+                <Typography variant="h3">
+                  I"m
+                  <span lang="en" style={{ color: "#4ca771" }}> Jacob</span>
                   <br />
                   a
-                  <span lang='en' style={{ color: "#4ca771" }}> Student </span>
+                  <span lang="en" style={{ color: "#4ca771" }}> Student </span>
                   at Northeastern
                 </Typography>
               </motion.div>
@@ -105,14 +105,14 @@ const Home: NextPage = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
             >
-              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder='blur' blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8WQ8AAjcBWtrfQHkAAAAASUVORK5CYII=" width={750} height={660} style={{ borderRadius: "32px" }} />
+              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={750} height={660} style={{ borderRadius: "32px" }} />
             </motion.div>
           </Stack>
         </motion.div>
 
         { /* Work section */}
         <motion.div
-          id='work-section'
+          id="work-section"
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: true }}
@@ -120,7 +120,7 @@ const Home: NextPage = () => {
         >
           <motion.div variants={works}>
             <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
-              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder='blur' blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8WQ8AAjcBWtrfQHkAAAAASUVORK5CYII=" width={500} height={440} style={{ borderRadius: "32px" }} />
+              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={500} height={440} style={{ borderRadius: "32px" }} />
               <Stack direction="column" spacing={2} maxWidth="40%">
                 <motion.div
                   initial={{ opacity: 0, scale: 1 }}
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
                   transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
                   style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
                 >
-                  <Typography variant='h4'>
+                  <Typography variant="h4">
                     This is test text for blurb about a project
                   </Typography>
                 </motion.div>
@@ -141,8 +141,8 @@ const Home: NextPage = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </motion.p>
                 <motion.div>
-                  <Fab variant='extended'
-                    href='/work'
+                  <Fab variant="extended"
+                    href="/work"
                     sx={{
                       backgroundColor: theme.palette.primary.primaryContainer,
                       color: theme.palette.primary.onPrimaryContainer,
@@ -161,7 +161,7 @@ const Home: NextPage = () => {
 
           { /* Testimonials section */}
           <motion.div
-            id='testimonial-section'
+            id="testimonial-section"
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: true }}
@@ -177,7 +177,7 @@ const Home: NextPage = () => {
                     transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
                     style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
                   >
-                    <Typography variant='h4'>
+                    <Typography variant="h4">
                       This is test text for a testimonial
                     </Typography>
                   </motion.div>
@@ -190,8 +190,8 @@ const Home: NextPage = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                   </motion.p>
                   <motion.div>
-                    <Fab variant='extended'
-                      href='/about'
+                    <Fab variant="extended"
+                      href="/about"
                       sx={{
                         backgroundColor: theme.palette.primary.primaryContainer,
                         color: theme.palette.primary.onPrimaryContainer,
@@ -205,7 +205,7 @@ const Home: NextPage = () => {
                     </Fab>
                   </motion.div>
                 </Stack>
-                <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder='blur' blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8WQ8AAjcBWtrfQHkAAAAASUVORK5CYII=" width={500} height={440} style={{ borderRadius: "32px" }} />
+                <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={500} height={440} style={{ borderRadius: "32px" }} />
               </Stack>
             </motion.div>
           </motion.div>

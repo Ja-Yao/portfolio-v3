@@ -104,7 +104,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         dispatch.colorMode.update(currentMode === "light" ? "dark" : "light");
       },
     }),
-    [state.colorMode.mode],
+    [state.colorMode.mode, dispatch],
   );
 
   const theme = useMemo(
