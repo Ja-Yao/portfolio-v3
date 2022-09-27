@@ -1,9 +1,9 @@
-import { createContext, useMemo } from 'react';
+import { createContext, useMemo, useState } from 'react';
+import { PaletteMode } from '@mui/material';
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Provider } from "react-redux";
-import store from "../models";
+
 
 interface PaletteColor {
   light?: string;
@@ -94,25 +94,23 @@ const secondaryDark: PaletteColor = {
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const state = store.getState();
-  const { dispatch } = store;
+  const [mode, setMode] = useState<PaletteMode>("light");
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        const currentMode = state.colorMode.mode;
-        dispatch.colorMode.update(currentMode === "light" ? "dark" : "light");
+        setMode((prevMode: PaletteMode) => prevMode === "light" ? "dark" : "light");
       },
     }),
-    [state.colorMode.mode, dispatch],
+    [],
   );
 
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          mode: state.colorMode.mode,
-          ...(state.colorMode.mode === "dark"
+          mode: mode,
+          ...(mode === "dark"
             ? {
               primary: primaryDark,
               secondary: secondaryDark,
@@ -147,17 +145,15 @@ function MyApp({ Component, pageProps }: AppProps) {
           }
         }
       }),
-    [state.colorMode.mode],
+    [mode],
   );
 
   return (
-    <Provider store={store}>
-      <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </ColorModeContext.Provider>
-    </Provider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   )
 }
 
