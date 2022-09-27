@@ -105,7 +105,7 @@ const Home: NextPage = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
             >
-              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" width={750} height={660} style={{ borderRadius: "32px" }} />
+              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder='blur' blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8WQ8AAjcBWtrfQHkAAAAASUVORK5CYII=" width={750} height={660} style={{ borderRadius: "32px" }} />
             </motion.div>
           </Stack>
         </motion.div>
@@ -120,7 +120,7 @@ const Home: NextPage = () => {
         >
           <motion.div variants={works}>
             <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
-              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" width={500} height={440} style={{ borderRadius: "32px" }} />
+              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder='blur' blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8WQ8AAjcBWtrfQHkAAAAASUVORK5CYII=" width={500} height={440} style={{ borderRadius: "32px" }} />
               <Stack direction="column" spacing={2} maxWidth="40%">
                 <motion.div
                   initial={{ opacity: 0, scale: 1 }}
@@ -205,7 +205,7 @@ const Home: NextPage = () => {
                     </Fab>
                   </motion.div>
                 </Stack>
-                <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" width={500} height={440} style={{ borderRadius: "32px" }} />
+                <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder='blur' blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8WQ8AAjcBWtrfQHkAAAAASUVORK5CYII=" width={500} height={440} style={{ borderRadius: "32px" }} />
               </Stack>
             </motion.div>
           </motion.div>
