@@ -1,8 +1,9 @@
-import { createContext, useMemo, useState } from 'react';
-import { PaletteMode } from '@mui/material';
+import { createContext, useMemo } from 'react';
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Provider } from "react-redux";
+import store from "../models";
 
 interface PaletteColor {
   light?: string;
@@ -93,23 +94,25 @@ const secondaryDark: PaletteColor = {
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [mode, setMode] = useState<PaletteMode>("dark");
+  const state = store.getState();
+  const { dispatch } = store;
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode: PaletteMode) => (prevMode === "light" ? "dark" : "light"));
+        const currentMode = state.colorMode.mode;
+        dispatch.colorMode.update(currentMode === "light" ? "dark" : "light");
       },
     }),
-    [],
+    [state.colorMode.mode],
   );
 
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          mode: mode,
-          ...(mode === "dark"
+          mode: state.colorMode.mode,
+          ...(state.colorMode.mode === "dark"
             ? {
               primary: primaryDark,
               secondary: secondaryDark,
@@ -129,7 +132,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           MuiButton: {
             variants: [
               {
-                props: {variant: "text"},
+                props: { variant: "text" },
                 style: {
                   color: "#4ca771",
                 }
@@ -144,15 +147,17 @@ function MyApp({ Component, pageProps }: AppProps) {
           }
         }
       }),
-    [mode],
+    [state.colorMode.mode],
   );
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <Provider store={store}>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </Provider>
   )
 }
 
