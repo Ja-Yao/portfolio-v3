@@ -9,6 +9,7 @@ import { motion, Variants } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { BubbleChartOutlined, WorkOutlineRounded } from "@mui/icons-material";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const theme = useTheme();
@@ -141,19 +142,20 @@ const Home: NextPage = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </motion.p>
                 <motion.div>
-                  <Fab variant="extended"
-                    href="/work"
-                    sx={{
-                      backgroundColor: theme.palette.primary.primaryContainer,
-                      color: theme.palette.primary.onPrimaryContainer,
-                      maxWidth: "212px",
-                      borderRadius: "16px",
-                      marginTop: "16px"
-                    }}
-                  >
-                    <WorkOutlineRounded sx={{ color: theme.palette.primary.onPrimaryContainer, mr: 1 }} />
-                    Learn about my work
-                  </Fab>
+                  <Link href="/work">
+                    <Fab variant="extended"
+                      sx={{
+                        backgroundColor: theme.palette.primary.primaryContainer,
+                        color: theme.palette.primary.onPrimaryContainer,
+                        maxWidth: "212px",
+                        borderRadius: "16px",
+                        marginTop: "16px"
+                      }}
+                    >
+                      <WorkOutlineRounded sx={{ color: theme.palette.primary.onPrimaryContainer, mr: 1 }} />
+                      Learn about my work
+                    </Fab>
+                  </Link>
                 </motion.div>
               </Stack>
             </Stack>
@@ -190,19 +192,20 @@ const Home: NextPage = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                   </motion.p>
                   <motion.div>
-                    <Fab variant="extended"
-                      href="/about"
-                      sx={{
-                        backgroundColor: theme.palette.primary.primaryContainer,
-                        color: theme.palette.primary.onPrimaryContainer,
-                        maxWidth: "212px",
-                        borderRadius: "16px",
-                        marginTop: "16px"
-                      }}
-                    >
-                      <BubbleChartOutlined sx={{ color: theme.palette.primary.onPrimaryContainer, mr: 1 }} />
-                      Learn more about me
-                    </Fab>
+                    <Link href="/about">
+                      <Fab variant="extended"
+                        sx={{
+                          backgroundColor: theme.palette.primary.primaryContainer,
+                          color: theme.palette.primary.onPrimaryContainer,
+                          maxWidth: "212px",
+                          borderRadius: "16px",
+                          marginTop: "16px"
+                        }}
+                      >
+                        <BubbleChartOutlined sx={{ color: theme.palette.primary.onPrimaryContainer, mr: 1 }} />
+                        Learn more about me
+                      </Fab>
+                    </Link>
                   </motion.div>
                 </Stack>
                 <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={500} height={440} style={{ borderRadius: "32px" }} />
