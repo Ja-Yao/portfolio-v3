@@ -8,7 +8,7 @@ import { useTheme } from "@mui/material/styles";
 import { motion, Variants } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { BubbleChartOutlined, WorkOutlineRounded } from "@mui/icons-material";
+import { BubbleChartOutlined, CreateOutlined, WorkOutlineRounded } from "@mui/icons-material";
 import Link from "next/link";
 
 const Home: NextPage = () => {
@@ -80,7 +80,7 @@ const Home: NextPage = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
                 style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
               >
                 <Typography variant="h3">
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
               <motion.p
                 initial={{ opacity: 0, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
                 style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -104,7 +104,7 @@ const Home: NextPage = () => {
             <motion.div
               initial={{ opacity: 0, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+              transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
             >
               <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={750} height={660} style={{ borderRadius: "32px" }} />
             </motion.div>
@@ -209,6 +209,47 @@ const Home: NextPage = () => {
                   </motion.div>
                 </Stack>
                 <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={500} height={440} style={{ borderRadius: "32px" }} />
+              </Stack>
+            </motion.div>
+          </motion.div>
+
+          {/* Contact section */}
+          <motion.div
+            id="testimonial-section"
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true }}
+            style={{ width: "100%", maxWidth: "1500px", marginTop: "30vh" }}
+          >
+            <motion.div variants={works}>
+              <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">
+                <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={625} height={550} style={{ borderRadius: "32px" }} />
+                <motion.div>
+                  <Typography variant="h2" sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
+                    Let's talk about it.
+                  </Typography>
+                </motion.div>
+                <motion.div>
+                  <Typography variant="body1" fontFamily="PT Sans" sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
+                    Interested in learning more about me?
+                  </Typography>
+                </motion.div>
+                <motion.div>
+                  <Link href="/contact">
+                    <Fab variant="extended"
+                      sx={{
+                        backgroundColor: theme.palette.primary.primaryContainer,
+                        color: theme.palette.primary.onPrimaryContainer,
+                        maxWidth: "212px",
+                        borderRadius: "16px",
+                        marginTop: "16px"
+                      }}
+                    >
+                      <CreateOutlined sx={{ color: theme.palette.primary.onPrimaryContainer, mr: 1 }} />
+                      Send me a message
+                    </Fab>
+                  </Link>
+                </motion.div>
               </Stack>
             </motion.div>
           </motion.div>
