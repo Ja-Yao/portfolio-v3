@@ -84,7 +84,7 @@ const Home: NextPage = () => {
                 style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
               >
                 <Typography variant="h3">
-                  I"m
+                  I'm
                   <span lang="en" style={{ color: "#4ca771" }}> Jacob</span>
                   <br />
                   a
