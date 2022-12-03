@@ -133,6 +133,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                 props: { variant: "text" },
                 style: {
                   color: "#4ca771",
+                  ":hover": {
+                    color: mode === "dark" ? "#fbfbfd" : "#101f10",
+                  }
                 }
               },
               {
