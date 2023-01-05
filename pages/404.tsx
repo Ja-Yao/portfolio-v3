@@ -1,5 +1,6 @@
 import { ArrowForwardRounded } from "@mui/icons-material";
-import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
