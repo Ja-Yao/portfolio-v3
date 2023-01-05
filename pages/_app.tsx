@@ -22,6 +22,13 @@ interface PaletteColor {
   surfaceVariant?: string;
   onSurfaceVariant?: string;
   outline?: string;
+
+  // tonal colors
+  surfaceAt1?: string,
+  surfaceAt2?: string,
+  surfaceAt3?: string,
+  surfaceAt4?: string,
+  surfaceAt5?: string
 }
 
 declare module "@mui/material/styles/createPalette" {
@@ -42,46 +49,71 @@ declare module "@mui/material/styles/createPalette" {
     surfaceVariant: string;
     onSurfaceVariant: string;
     outline: string;
+
+    surfaceAt1: string;
+    surfaceAt2: string;
+    surfaceAt3: string;
+    surfaceAt4: string;
+    surfaceAt5: string;
   }
 }
 
 const primaryLight: PaletteColor = {
-  main: '#c0e6ba',
+  main: '#386a20',
   contrastText: "#1b1c1a",
-  onPrimary: '#fbfbfd',
-  primaryContainer: '#c0e6ba',
-  onPrimaryContainer: '#002105',
+  onPrimary: 'white',
+  primaryContainer: '#b8f397',
+  onPrimaryContainer: '#072100',
 
-  background: '#fbfbfd',
-  onBackground: '#1b1c1a',
-  surface: '#fbfbfd',
+  background: '#fdfdf6',
+  onBackground: '#1a1c18',
+  surface: '#fdfdf6',
   onSurface: '#1b1c1a',
-  surfaceVariant: '#e1e3dc',
-  onSurfaceVariant: '#454843',
-  outline: '#757872',
+  surfaceVariant: '#e0e4d7',
+  onSurfaceVariant: '#43483e',
+  outline: '#74796d',
+
+  surfaceAt1: "#f3f5eb",
+  surfaceAt2: "#ebefe2",
+  surfaceAt3: "#e7edde",
+  surfaceAt4: "#e5ebdc",
+  surfaceAt5: "#e1e8d7"
 };
 
 const secondaryLight: PaletteColor = {
-  main: '#52634f',
-  onPrimary: '#fbfbfd',
-  primaryContainer: '#d5e8cf',
-  onPrimaryContainer: '#101f10',
+  main: '#55624c',
+  onPrimary: 'white',
+  primaryContainer: '#d8e7cb',
+  onPrimaryContainer: '#131f0d',
 };
 
-const primaryDark: PaletteColor = {
-  main: '#c0e6ba',
-  contrastText: "#101f10",
-  onPrimary: '#fbfbfd',
-  primaryContainer: '#c0e6ba',
-  onPrimaryContainer: '#002105',
+const errorLight: PaletteColor = {
+  main: "#ba1a1a",
+  onPrimary: "white",
+  primaryContainer: "#ffdad6",
+  onPrimaryContainer: "#410002"
+}
 
-  background: '#1b1c1a',
-  onBackground: '#fbfbfd',
-  surface: '#1b1c1a',
-  onSurface: '#fbfbfd',
-  surfaceVariant: '#e1e3dc',
-  onSurfaceVariant: '#454843',
-  outline: '#757872',
+const primaryDark: PaletteColor = {
+  main: '#9cd67e',
+  contrastText: "#fbfbfd",
+  onPrimary: '#113800',
+  primaryContainer: '#205107',
+  onPrimaryContainer: '#b8f397',
+
+  background: '#1a1c18',
+  onBackground: '#e3e3dc',
+  surface: '#1a1c18',
+  onSurface: '#e3e3dc',
+  surfaceVariant: '#43483e',
+  onSurfaceVariant: '#c3c8bb',
+  outline: '#8d9287',
+
+  surfaceAt1: "#21261d",
+  surfaceAt2: "#272e23",
+  surfaceAt3: "#283123",
+  surfaceAt4: "#2a3324",
+  surfaceAt5: "#2c3627"
 };
 
 const secondaryDark: PaletteColor = {
@@ -90,6 +122,13 @@ const secondaryDark: PaletteColor = {
   primaryContainer: '#d5e8cf',
   onPrimaryContainer: '#101f10',
 };
+
+const errorDark: PaletteColor = {
+  main: "#ffb4ab",
+  onPrimary: "#690005",
+  primaryContainer: "#93000a",
+  onPrimaryContainer: "#ffdad6"
+}
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -114,10 +153,12 @@ function MyApp({ Component, pageProps }: AppProps) {
             ? {
               primary: primaryDark,
               secondary: secondaryDark,
+              error: errorDark
             }
             : {
               primary: primaryLight,
               secondary: secondaryLight,
+              error: errorLight
             }),
         },
         typography: {
@@ -132,19 +173,34 @@ function MyApp({ Component, pageProps }: AppProps) {
               {
                 props: { variant: "text" },
                 style: {
-                  color: "#4ca771",
-                  ":hover": {
-                    color: mode === "dark" ? "#fbfbfd" : "#101f10",
-                  }
+                  borderRadius: "20px",
+                  color: mode === "dark" ? "white" : "#1a1c18",
                 }
               },
               {
                 props: { variant: "contained" },
                 style: {
-                  color: "#101f10"
+                  borderRadius: "20px",
+                  backgroundColor: mode === "dark" ? "#9cd67e" : "#386a20",
+                  color: mode === "dark" ? "#113800" : "white"
                 }
               }
             ]
+          },
+          MuiDrawer: {
+            styleOverrides: {
+              paper: {
+                backgroundColor: mode === "dark" ? "#252b20" : "#edf1e6",
+              }
+            }
+          },
+          MuiListItemButton: {
+            styleOverrides: {
+              selected: {
+                color: mode === "dark" ? "#101f10" : "131f0d",
+                backgroundColor: mode === "dark" ? "#d5e8cf" : "#d8e7cb",
+              },
+            }
           }
         }
       }),
