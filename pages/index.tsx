@@ -1,18 +1,26 @@
+import React, { useState } from "react";
 import type { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image";
 import styles from "../styles/Home.module.css"
 
-import { Box, Fab, Stack, Typography } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, Fab, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { BubbleChartOutlined, CreateOutlined, WorkOutlineRounded } from "@mui/icons-material";
+import { BubbleChartOutlined, CreateOutlined, EmailOutlined, PersonOutlineRounded, WorkOutlineRounded } from "@mui/icons-material";
 import Link from "next/link";
+import { nanoid, testimonials } from "../constants/constants";
 
 const Home: NextPage = () => {
   const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  const [openContactDialog, setOpenContactDialog] = useState(false);
+  const [fullWidth, setFullWidth] = useState(false);
+  const [radio, setRadio] = useState("email");
+  const [disp, setDisp] = useState("start");
 
   const sentence = {
     hidden: { opacity: 1 },
@@ -28,7 +36,7 @@ const Home: NextPage = () => {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 }
   }
-  const greeting = "Hello";
+  const greeting = "Hello,";
 
   const works: Variants = {
     offscreen: {
@@ -47,6 +55,33 @@ const Home: NextPage = () => {
     }
   }
 
+  const handleDialogNav = () => {
+    if (disp === "start" && radio === "email") {
+      setDisp("email");
+      setFullWidth(true);
+    } else if (disp === "start" && radio === "phone") {
+      setDisp("phone");
+      setFullWidth(true);
+    } else if (disp === "start" && radio === "other") {
+      setDisp("other");
+      setFullWidth(true);
+    } else {
+      setDisp("start");
+      setFullWidth(false);
+    }
+  }
+
+  const handleBack = () => {
+    setDisp("start");
+    setFullWidth(false);
+  }
+
+  const handleSend = () => {
+    setDisp("start");
+    setFullWidth(false);
+    setOpenContactDialog(false);
+  }
+
   return (
     <Box className={styles.container} sx={{ backgroundColor: theme.palette.primary.surface }}>
       <Head>
@@ -58,10 +93,10 @@ const Home: NextPage = () => {
       <Navbar />
       <Box component={"main"} className={styles.main} >
         {/* Landing section */}
-        <motion.div id="landing-section" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "7.5vh" }}>
+        <motion.div id="landing-section" viewport={{ once: true }} style={{ marginTop: "7.5vh" }}>
           <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
             <Stack direction="column" spacing={2} maxWidth="40%">
-              <motion.h2
+              <motion.h1
                 variants={sentence}
                 initial="hidden"
                 animate="visible"
@@ -70,26 +105,22 @@ const Home: NextPage = () => {
                 {
                   greeting.split("").map((char, index: number) => {
                     return (
-                      <motion.span key={char + "-" + index} variants={letter}>
+                      <motion.span key={nanoid()} variants={letter}>
                         {char}
                       </motion.span>
                     )
                   })
                 }
-              </motion.h2>
+              </motion.h1>
               <motion.div
                 initial={{ opacity: 0, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
                 style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
               >
-                <Typography variant="h3">
+                <Typography variant="h1">
                   I'm
-                  <span lang="en" style={{ color: "#4ca771" }}> Jacob</span>
-                  <br />
-                  a
-                  <span lang="en" style={{ color: "#4ca771" }}> Student </span>
-                  at Northeastern
+                  <span lang="en" style={{ color: theme.palette.primary.main }}> Jacob</span>
                 </Typography>
               </motion.div>
               <motion.p
@@ -98,7 +129,8 @@ const Home: NextPage = () => {
                 transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
                 style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                I'm a senior at Northeastern University studying Computer Engineering and a minor in Computer Science,
+                with over 2 years industry experience in front-end design and development.
               </motion.p>
             </Stack>
             <motion.div
@@ -143,16 +175,22 @@ const Home: NextPage = () => {
                 </motion.p>
                 <motion.div>
                   <Link href="/work">
-                    <Fab variant="extended"
+                    <Fab
+                      variant="extended"
                       sx={{
-                        backgroundColor: theme.palette.primary.primaryContainer,
-                        color: theme.palette.primary.onPrimaryContainer,
+                        boxShadow: 0,
+                        backgroundColor: theme.palette.secondary.primaryContainer,
+                        color: theme.palette.secondary.onPrimaryContainer,
                         maxWidth: "212px",
                         borderRadius: "16px",
-                        marginTop: "16px"
+                        marginTop: "16px",
+                        ":hover": {
+                          backgroundColor: theme.palette.secondary.dark,
+                          color: "white"
+                        }
                       }}
                     >
-                      <WorkOutlineRounded sx={{ color: theme.palette.primary.onPrimaryContainer, mr: 1 }} />
+                      <WorkOutlineRounded sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
                       Learn about my work
                     </Fab>
                   </Link>
@@ -169,46 +207,70 @@ const Home: NextPage = () => {
             viewport={{ once: true }}
             style={{ width: "100%", maxWidth: "1500px", marginTop: "30vh" }}
           >
-            <motion.div variants={works}>
+            <motion.div variants={works} style={{ backgroundColor: theme.palette.primary.surfaceAt1, borderRadius: "28px", padding: 2 }} >
               <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
-
-                <Stack direction="column" spacing={2} maxWidth="40%">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                    style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
-                  >
-                    <Typography variant="h4">
-                      This is test text for a testimonial
-                    </Typography>
-                  </motion.div>
-                  <motion.p
-                    initial={{ opacity: 0, scale: 1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                    style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
-                  >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </motion.p>
-                  <motion.div>
-                    <Link href="/about">
-                      <Fab variant="extended"
-                        sx={{
-                          backgroundColor: theme.palette.primary.primaryContainer,
-                          color: theme.palette.primary.onPrimaryContainer,
-                          maxWidth: "212px",
-                          borderRadius: "16px",
-                          marginTop: "16px"
-                        }}
-                      >
-                        <BubbleChartOutlined sx={{ color: theme.palette.primary.onPrimaryContainer, mr: 1 }} />
-                        Learn more about me
-                      </Fab>
-                    </Link>
-                  </motion.div>
-                </Stack>
-                <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={500} height={440} style={{ borderRadius: "32px" }} />
+                {
+                  testimonials.map((t, indx) => (
+                    <React.Fragment key={nanoid()}>
+                      <Stack direction="column" spacing={2} maxWidth="40%">
+                        <AnimatePresence>
+                          <motion.div
+                            initial={{ opacity: 0, scale: 1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                            style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
+                          >
+                            <Typography variant="h4">
+                              "{t.impactful}"
+                            </Typography>
+                          </motion.div>
+                          <motion.p
+                            key={nanoid()}
+                            initial={{ opacity: 0, scale: 1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                            style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
+                          >
+                            "{t.major}"
+                          </motion.p>
+                          <motion.p
+                            key={nanoid()}
+                            initial={{ opacity: 0, scale: 1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                            style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
+                          >
+                            {t.author} <br />
+                            {t.position}, {t.company}
+                          </motion.p>
+                        </AnimatePresence>
+                        <motion.div>
+                          <Link href="/about">
+                            <Fab
+                              variant="extended"
+                              sx={{
+                                boxShadow: 0,
+                                backgroundColor: theme.palette.secondary.primaryContainer,
+                                color: theme.palette.secondary.onPrimaryContainer,
+                                maxWidth: "212px",
+                                borderRadius: "16px",
+                                marginTop: "16px",
+                                ":hover": {
+                                  backgroundColor: theme.palette.secondary.main,
+                                  color: "white"
+                                }
+                              }}
+                            >
+                              <BubbleChartOutlined sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
+                              Learn more about me
+                            </Fab>
+                          </Link>
+                        </motion.div>
+                      </Stack>
+                      <Image quality={95} src={t.image} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={450} height={450} style={{ borderRadius: "32px" }} />
+                    </React.Fragment>
+                  ))
+                }
               </Stack>
             </motion.div>
           </motion.div>
@@ -222,38 +284,123 @@ const Home: NextPage = () => {
             style={{ width: "100%", maxWidth: "1500px", marginTop: "30vh" }}
           >
             <motion.div variants={works}>
-              <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">
+              <Stack direction='column' spacing={4} sx={{ placeItems: "center" }}>
                 <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={625} height={550} style={{ borderRadius: "32px" }} />
                 <motion.div>
-                  <Typography variant="h2" sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
-                    Let's talk about it.
-                  </Typography>
-                </motion.div>
-                <motion.div>
-                  <Typography variant="body1" fontFamily="PT Sans" sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
+                  <Typography variant="h3" sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
                     Interested in learning more about me?
                   </Typography>
                 </motion.div>
                 <motion.div>
-                  <Link href="/contact">
-                    <Fab variant="extended"
-                      sx={{
-                        backgroundColor: theme.palette.primary.primaryContainer,
-                        color: theme.palette.primary.onPrimaryContainer,
-                        maxWidth: "212px",
-                        borderRadius: "16px",
-                        marginTop: "16px"
-                      }}
-                    >
-                      <CreateOutlined sx={{ color: theme.palette.primary.onPrimaryContainer, mr: 1 }} />
-                      Send me a message
-                    </Fab>
-                  </Link>
+                  <Stack direction='row' spacing={2} sx={{ placeItems: "center" }}>
+                    <Link href="/contact">
+                      <Button
+                        variant="contained"
+                        sx={{
+                          boxShadow: 0,
+                          backgroundColor: theme.palette.primary.main,
+                          color: theme.palette.primary.onPrimary,
+                          maxWidth: "212px",
+                          height: "56px",
+                          borderRadius: "16px",
+                          ":hover": {
+                            backgroundColor: theme.palette.primary.dark,
+                            color: "white"
+                          }
+                        }}
+                      >
+                        <CreateOutlined sx={{ color: theme.palette.primary.onPrimary, mr: 1 }} />
+                        Send me a message
+                      </Button>
+                    </Link>
+                    <Button variant="outlined" onClick={(e) => setOpenContactDialog(true)} sx={{ maxWidth: "212px", height: "56px", borderRadius: "16px", borderColor: theme.palette.primary.outline }}>
+                      <PersonOutlineRounded sx={{ mr: 1 }} />
+                      Provide contact info
+                    </Button>
+                  </Stack>
                 </motion.div>
               </Stack>
             </motion.div>
           </motion.div>
         </motion.div>
+
+        <Dialog fullScreen={fullScreen} fullWidth={fullWidth} maxWidth="sm" open={openContactDialog} onClose={(e) => setOpenContactDialog(false)} PaperProps={{ style: { borderRadius: "28px" } }}>
+          <DialogContent sx={{ backgroundColor: theme.palette.primary.surfaceAt1 }}>
+            <AnimatePresence>
+              {
+                disp === "start" &&
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0, }}
+                >
+                  <Stack direction="column" spacing={2}>
+                    <Stack direction="column" sx={{ placeItems: "center" }}>
+                      <EmailOutlined sx={{ color: theme.palette.primary.main }} />
+                      <Typography>
+                        Choose your mode of contact
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
+                        Select the option that works best for you
+                      </Typography>
+                    </Stack>
+                    <FormControl>
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        value={radio}
+                        onChange={(e) => setRadio((e.target as HTMLInputElement).value)}
+                        name="radio-buttons-group"
+                      >
+                        <FormControlLabel value="email" control={<Radio />} label="Email" />
+                        <FormControlLabel value="phone" control={<Radio />} label="Phone" />
+                        <FormControlLabel value="other" control={<Radio />} label="Other" />
+                      </RadioGroup>
+                    </FormControl>
+                  </Stack>
+                </motion.div>
+              }
+              {
+                disp === "email" &&
+                <motion.div
+                  initial={{ opacity: 0, x: 200 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, }}
+                >
+                  <Stack direction="column" spacing={2}>
+                    <Stack direction="column" sx={{ placeItems: "center" }}>
+                      <EmailOutlined sx={{ color: theme.palette.primary.main }} />
+                      <Typography>
+                        Choose your mode of contact
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
+                        Select the option that works best for you
+                      </Typography>
+                    </Stack>
+                    <FormControl>
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        value={radio}
+                        onChange={(e) => setRadio((e.target as HTMLInputElement).value)}
+                        name="radio-buttons-group"
+                      >
+                        <FormControlLabel value="email" control={<Radio />} label="Email" />
+                        <FormControlLabel value="phone" control={<Radio />} label="Phone" />
+                        <FormControlLabel value="other" control={<Radio />} label="Other" />
+                      </RadioGroup>
+                    </FormControl>
+                  </Stack>
+                </motion.div>
+              }
+            </AnimatePresence>
+          </DialogContent>
+          <DialogActions sx={{ backgroundColor: theme.palette.primary.surfaceAt1 }}>
+            <Button onClick={e => disp === "start" ? setOpenContactDialog(false) : handleBack()} sx={{ color: theme.palette.primary.main }}>
+              {disp === "start" ? "Cancel" : "Back"}
+            </Button>
+            <Button onClick={disp === "start" ? handleDialogNav : handleSend} sx={{ color: theme.palette.primary.main }}>
+              {disp === "start" ? "Continue" : "Send"}
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Box>
 
       <Footer />
