@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
-import Link from "next/link";
 
 import { Alert, Box, Button, CircularProgress, Snackbar, Stack, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import axios from 'axios';
 
 import Navbar from "../components/Navbar";
@@ -99,15 +98,21 @@ const Contact: NextPage = () => {
             <></>
           )
         }
-        <motion.div id="form-names" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "7.5vh" }}>
+        <motion.div
+          id="form-names"
+          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+          style={{ width: "100vw", maxWidth: "1500px", marginTop: "7.5vh" }}>
           <Stack direction="row" alignItems="center" justifyContent="center" spacing={4} sx={{ maxWidth: "800px", marginInline: "auto" }}>
             {/* First Name */}
             <Stack direction="column" alignItems="flex-start" sx={{ width: "40%" }}>
-              <Typography variant="body1" fontWeight={700} sx={{color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText}}>
+              <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
                 FIRST NAME
               </Typography>
               <TextField
-              inputProps={{style: {textTransform: 'capitalize'}}}
+                inputProps={{ style: { textTransform: 'capitalize' } }}
                 variant='outlined'
                 required
                 fullWidth
@@ -119,11 +124,11 @@ const Contact: NextPage = () => {
 
             {/* Last Name */}
             <Stack direction="column" alignItems="flex-start" sx={{ width: "40%" }}>
-              <Typography variant="body1" fontWeight={700} sx={{color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText}}>
+              <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
                 LAST NAME
               </Typography>
               <TextField
-              inputProps={{style: {textTransform: 'capitalize'}}}
+                inputProps={{ style: { textTransform: 'capitalize' } }}
                 variant='outlined'
                 required
                 fullWidth
@@ -138,7 +143,7 @@ const Contact: NextPage = () => {
         <motion.div id="form-details" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "5vh" }}>
           {/* Email */}
           <Stack direction="column" alignItems="flex-start" sx={{ maxWidth: "675px", marginInline: "auto" }}>
-            <Typography variant="body1" fontWeight={700} sx={{color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText}}>
+            <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
               E-MAIL
             </Typography>
             <TextField
@@ -146,7 +151,7 @@ const Contact: NextPage = () => {
               required
               fullWidth
               value={email}
-              placeholder='you@yourdomain.com'
+              placeholder='john.doe@gmail.com'
               onChange={e => setEmail(e.target.value)}
             />
           </Stack>
@@ -154,7 +159,7 @@ const Contact: NextPage = () => {
 
         <motion.div id="form-details" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "5vh" }}>
           <Stack direction="column" alignItems="flex-start" sx={{ maxWidth: "675px", marginInline: "auto" }}>
-            <Typography variant="body1" fontWeight={700} sx={{color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText}}>
+            <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
               MESSAGE
             </Typography>
             <TextField
@@ -172,17 +177,17 @@ const Contact: NextPage = () => {
                 <Button
                   variant="contained"
                   onClick={handleSubmit}
-                  sx={{ mt: 6, backgroundColor: "#4ca771", color: "#fbfbfd", borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" } }}
+                  sx={{ mt: 6, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.onPrimary, borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" } }}
                 >
                   SEND
                 </Button>
               ) : isLoading ? (
-                <CircularProgress sx={{ color: "#4ca771" }} />
+                  <CircularProgress sx={{ color: theme.palette.primary.main }} />
               ) : (
                 <Button
                   variant="contained"
                   disabled
-                  sx={{ mt: 6, backgroundColor: "#4ca771", color: "#fbfbfd", borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" } }}
+                      sx={{ mt: 6, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.onPrimary, borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" } }}
                 >
                   SEND
                 </Button>
@@ -193,7 +198,7 @@ const Contact: NextPage = () => {
       </Box>
 
       <Footer />
-    </Box>
+    </Box >
   )
 };
 
