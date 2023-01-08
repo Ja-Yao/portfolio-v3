@@ -117,10 +117,10 @@ const primaryDark: PaletteColor = {
 };
 
 const secondaryDark: PaletteColor = {
-  main: '#52634f',
-  onPrimary: '#fbfbfd',
-  primaryContainer: '#d5e8cf',
-  onPrimaryContainer: '#101f10',
+  main: '#bdcbb0',
+  onPrimary: '#283420',
+  primaryContainer: '#3e4a35',
+  onPrimaryContainer: '#d8e7cb',
 };
 
 const errorDark: PaletteColor = {
@@ -196,10 +196,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           },
           MuiListItemButton: {
             styleOverrides: {
-              selected: {
-                color: mode === "dark" ? "#101f10" : "131f0d",
-                backgroundColor: mode === "dark" ? "#d5e8cf" : "#d8e7cb",
-              },
+              "root": {
+                "&.Mui-selected": {
+                  color: mode === "dark" ? "#101f10" : "131f0d",
+                  backgroundColor: mode === "dark" ? "#3e4a35" : "#d8e7cb",
+                }
+              }
             }
           }
         }

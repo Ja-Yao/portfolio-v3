@@ -112,7 +112,7 @@ const Contact: NextPage = () => {
                 FIRST NAME
               </Typography>
               <TextField
-                inputProps={{ style: { textTransform: 'capitalize' } }}
+                inputProps={{ style: { textTransform: 'capitalize', fontFamily: "PT Sans" } }}
                 variant='outlined'
                 required
                 fullWidth
@@ -128,7 +128,7 @@ const Contact: NextPage = () => {
                 LAST NAME
               </Typography>
               <TextField
-                inputProps={{ style: { textTransform: 'capitalize' } }}
+                inputProps={{ style: { textTransform: 'capitalize', fontFamily: "PT Sans" } }}
                 variant='outlined'
                 required
                 fullWidth
@@ -149,6 +149,7 @@ const Contact: NextPage = () => {
             <TextField
               variant='outlined'
               required
+              inputProps={{ style: { fontFamily: "PT Sans" } }}
               fullWidth
               value={email}
               placeholder='john.doe@gmail.com'
@@ -165,6 +166,7 @@ const Contact: NextPage = () => {
             <TextField
               variant='outlined'
               required
+              inputProps={{ style: { fontFamily: "PT Sans" } }}
               fullWidth
               value={body}
               multiline={true}
@@ -182,12 +184,12 @@ const Contact: NextPage = () => {
                   SEND
                 </Button>
               ) : isLoading ? (
-                  <CircularProgress sx={{ color: theme.palette.primary.main }} />
+                <CircularProgress sx={{ color: theme.palette.primary.main }} />
               ) : (
                 <Button
                   variant="contained"
                   disabled
-                      sx={{ mt: 6, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.onPrimary, borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" } }}
+                  sx={{ mt: 6, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.onPrimary, borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" } }}
                 >
                   SEND
                 </Button>

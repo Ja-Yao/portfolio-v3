@@ -100,7 +100,7 @@ const Home: NextPage = () => {
                 variants={sentence}
                 initial="hidden"
                 animate="visible"
-                style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
+                style={{ color: theme.palette.primary.contrastText }}
               >
                 {
                   greeting.split("").map((char, index: number) => {
@@ -116,7 +116,7 @@ const Home: NextPage = () => {
                 initial={{ opacity: 0, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
-                style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
+                style={{ color: theme.palette.primary.contrastText }}
               >
                 <Typography variant="h1">
                   I'm
@@ -127,7 +127,7 @@ const Home: NextPage = () => {
                 initial={{ opacity: 0, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
-                style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
+                style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
               >
                 I'm a senior at Northeastern University studying Computer Engineering and a minor in Computer Science,
                 with over 2 years industry experience in front-end design and development.
@@ -159,7 +159,7 @@ const Home: NextPage = () => {
                   initial={{ opacity: 0, scale: 1 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                  style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
+                  style={{ color: theme.palette.primary.contrastText }}
                 >
                   <Typography variant="h4">
                     This is test text for blurb about a project
@@ -169,7 +169,7 @@ const Home: NextPage = () => {
                   initial={{ opacity: 0, scale: 1 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                  style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
+                  style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </motion.p>
@@ -185,8 +185,7 @@ const Home: NextPage = () => {
                         borderRadius: "16px",
                         marginTop: "16px",
                         ":hover": {
-                          backgroundColor: theme.palette.secondary.dark,
-                          color: "white"
+                          backgroundColor: theme.palette.primary.surfaceAt4,
                         }
                       }}
                     >
@@ -218,7 +217,7 @@ const Home: NextPage = () => {
                             initial={{ opacity: 0, scale: 1 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                            style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}
+                            style={{ color: theme.palette.primary.contrastText }}
                           >
                             <Typography variant="h4">
                               "{t.impactful}"
@@ -229,7 +228,7 @@ const Home: NextPage = () => {
                             initial={{ opacity: 0, scale: 1 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                            style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
+                            style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
                           >
                             "{t.major}"
                           </motion.p>
@@ -238,7 +237,7 @@ const Home: NextPage = () => {
                             initial={{ opacity: 0, scale: 1 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                            style={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText, paddingTop: "16px" }}
+                            style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
                           >
                             {t.author} <br />
                             {t.position}, {t.company}
@@ -256,8 +255,7 @@ const Home: NextPage = () => {
                                 borderRadius: "16px",
                                 marginTop: "16px",
                                 ":hover": {
-                                  backgroundColor: theme.palette.secondary.main,
-                                  color: "white"
+                                  backgroundColor: theme.palette.primary.surfaceAt4,
                                 }
                               }}
                             >
@@ -287,7 +285,7 @@ const Home: NextPage = () => {
               <Stack direction='column' spacing={4} sx={{ placeItems: "center" }}>
                 <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={625} height={550} style={{ borderRadius: "32px" }} />
                 <motion.div>
-                  <Typography variant="h3" sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
+                  <Typography variant="h3" sx={{ color: theme.palette.primary.contrastText }}>
                     Interested in learning more about me?
                   </Typography>
                 </motion.div>
