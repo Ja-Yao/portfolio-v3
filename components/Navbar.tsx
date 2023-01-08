@@ -1,7 +1,9 @@
-import { FC, useContext } from "react";
+'use client';
+
+import React, { FC, useContext } from "react";
 import Link from "next/link";
-import { Button, Drawer, Fab, Grid, IconButton, List, ListItem, ListItemButton, ListItemIcon, Stack, Tooltip, Typography } from "@mui/material";
-import { CreateOutlined, DarkModeOutlined, HouseRounded, InfoOutlined, LightModeOutlined, MenuRounded, WorkOutlineRounded } from "@mui/icons-material";
+import { Drawer, Fab, IconButton, List, ListItem, ListItemButton, ListItemIcon, Slide, Stack, Typography } from "@mui/material";
+import { CreateOutlined, DarkModeOutlined, HouseRounded, InfoOutlined, LightModeOutlined, WorkOutlineRounded } from "@mui/icons-material";
 
 import { styled, useTheme } from '@mui/material/styles';
 import { ColorModeContext } from "../pages/_app";
@@ -25,6 +27,8 @@ const Navbar: FC<Props> = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const router = useRouter();
+  const containerRef = React.useRef(null);
+  const [clicked, setClicked] = React.useState(false);
 
   return (
     <Drawer
@@ -40,12 +44,12 @@ const Navbar: FC<Props> = () => {
     >
       <DrawerHeader>
         <Link href="/contact">
-          <Fab size="medium" sx={{ borderRadius: "16px", backgroundColor: theme.palette.primary.primaryContainer, boxShadow: 0, marginTop: 2,  }}>
+          <Fab size="medium" sx={{ borderRadius: "16px", backgroundColor: theme.palette.primary.primaryContainer, boxShadow: 0, marginTop: 2, }}>
             <CreateOutlined sx={{ color: theme.palette.primary.onPrimaryContainer }} />
           </Fab>
         </Link>
       </DrawerHeader>
-      <Stack direction="column" justifyContent="space-between" sx={{ height: "inherit", width: "auto" }}>
+      <Stack direction="column" justifyContent="space-between" sx={{ height: "inherit", width: "auto", overflow: "hidden" }}>
         <List>
           <ListItem sx={{ display: 'block' }}>
             <Stack direction="column">
@@ -54,7 +58,7 @@ const Navbar: FC<Props> = () => {
                   selected={router.asPath === "/"}
                   sx={{
                     justifyContent: 'center',
-                    px: 2.5,
+                    // px: 2.5,
                     borderRadius: "20px"
                   }}
                 >
@@ -63,13 +67,17 @@ const Navbar: FC<Props> = () => {
                       minWidth: 0,
                       mr: 'auto',
                       justifyContent: 'center',
+                      ":hover": {
+                        transition: "all 75ms ease-in-out",
+                        transform: "scale(1.05)"
+                      }
                     }}
                   >
-                    <HouseRounded />
+                    <HouseRounded sx={{ color: router.asPath === "/" ? theme.palette.secondary.onPrimaryContainer : theme.palette.primary.onSurfaceVariant }} />
                   </ListItemIcon>
                 </ListItemButton>
               </Link>
-              <Typography variant="caption" align="center" >Home</Typography>
+              <Typography variant="caption" align="center" sx={{ color: router.asPath === "/" ? theme.palette.primary.onSurface : theme.palette.primary.onSurfaceVariant }} >Home</Typography>
             </Stack>
           </ListItem>
 
@@ -89,13 +97,17 @@ const Navbar: FC<Props> = () => {
                       minWidth: 0,
                       mr: 'auto',
                       justifyContent: 'center',
+                      ":hover": {
+                        transition: "all 75ms ease-in-out",
+                        transform: "scale(1.05)"
+                      }
                     }}
                   >
-                    <InfoOutlined />
+                    <InfoOutlined sx={{ color: router.asPath === "/about" ? theme.palette.secondary.onPrimaryContainer : theme.palette.primary.onSurfaceVariant }} />
                   </ListItemIcon>
                 </ListItemButton>
               </Link>
-              <Typography variant="caption" align="center">About</Typography>
+              <Typography variant="caption" align="center" sx={{ color: router.asPath === "/" ? theme.palette.primary.onSurface : theme.palette.primary.onSurfaceVariant }} >About</Typography>
             </Stack>
           </ListItem>
 
@@ -115,35 +127,36 @@ const Navbar: FC<Props> = () => {
                       minWidth: 0,
                       mr: 'auto',
                       justifyContent: 'center',
+                      ":hover": {
+                        transition: "all 75ms ease-in-out",
+                        transform: "scale(1.05)"
+                      }
                     }}
                   >
-                    <WorkOutlineRounded />
+                    <WorkOutlineRounded sx={{ color: router.asPath === "/work" ? theme.palette.secondary.onPrimaryContainer : theme.palette.primary.onSurfaceVariant }} />
                   </ListItemIcon>
                 </ListItemButton>
               </Link>
-              <Typography variant="caption" align="center">Work</Typography>
+              <Typography variant="caption" align="center" sx={{ color: router.asPath === "/" ? theme.palette.primary.onSurface : theme.palette.primary.onSurfaceVariant }} >Work</Typography>
             </Stack>
           </ListItem>
         </List>
         <List>
           <ListItem sx={{ display: "block" }}>
-            <Tooltip title={theme.palette.mode === "dark" ? "Switch to the light theme" : "Switch to the dark theme"} placement="right" sx={{ fontSize: "16pt" }}>
-              <IconButton aria-label="toggle theme button" sx={{ width: '48px', height: '48px', border: `1px solid ${theme.palette.primary.outline}` }} onClick={colorMode.toggleColorMode} color="inherit">
-                {
-                  theme.palette.mode === "dark"
-                    ? <LightModeOutlined sx={{
-                      color: theme.palette.mode === "dark" ? theme.palette.grey[400] : theme.palette.grey[600],
-                      ":hover": { color: theme.palette.primary.onSurface },
-                    }}
-                    />
-                    : <DarkModeOutlined sx={{
-                      color: theme.palette.mode === "light" ? theme.palette.grey[600] : theme.palette.grey[400],
-                      ":hover": { color: theme.palette.primary.onSurface },
-                    }}
-                    />
-                }
-              </IconButton>
-            </Tooltip>
+            <IconButton aria-label="toggle-theme-button" ref={containerRef} sx={{ width: '48px', height: '48px', border: `1px solid ${theme.palette.primary.outline}`, placeItems: "center", overflow: "hidden" }} onClick={e => { setClicked(!clicked); colorMode.toggleColorMode(); }} color="inherit">
+              <div>
+                <Slide direction="up" appear={false} in={clicked} timeout={{ enter: theme.transitions.duration.enteringScreen, exit: 25}} container={containerRef.current} mountOnEnter unmountOnExit >
+                  <div style={{ width: "48px", height: "48px", borderRadius: "100px" }}>
+                    <LightModeOutlined sx={{ color: theme.palette.grey[400], marginTop: "11px" }} />
+                  </div>
+                </Slide>
+                <Slide direction="down" appear={false} in={!clicked} timeout={{ enter: theme.transitions.duration.enteringScreen, exit: 25}} container={containerRef.current} mountOnEnter unmountOnExit >
+                  <div style={{ width: "48px", height: "48px", borderRadius: "100px" }}>
+                    <DarkModeOutlined sx={{ color: theme.palette.grey[600], marginTop: "11px" }} />
+                  </div>
+                </Slide>
+              </div>
+            </IconButton>
           </ListItem>
         </List>
       </Stack>
