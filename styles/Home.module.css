@@ -1,6 +1,7 @@
 .container {
   padding: 0 2rem;
   overflow-x: hidden;
+  margin-left: 80px;
 }
 
 .main {
@@ -14,7 +15,6 @@
   overflow-x: hidden;
   overflow-y: hidden;
   margin-bottom: 20vh;
-  padding-left: 80px;
 }
 
 .footer {
