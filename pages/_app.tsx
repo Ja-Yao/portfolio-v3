@@ -162,7 +162,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }),
         },
         typography: {
-          fontFamily: "Nunito, PT Sans, Helveitca Neue, sans-serif",
+          fontFamily: "-apple-system, BlinkMacSystemFont, Nunito, PT Sans, Helveitca Neue, sans-serif",
           button: {
             textTransform: "none"
           }
