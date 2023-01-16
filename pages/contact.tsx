@@ -82,22 +82,15 @@ const Contact: NextPage = () => {
         overflowX: "hidden",
         overflowY: "hidden",
       }}>
-        {
-          isSent ? (
-            <Snackbar
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-              open={isSent}
-              onClose={handleClose}
-              autoHideDuration={5000}
-            >
-              <Alert onClose={handleClose} severity='success'>
-                Your message has been sent!
-              </Alert>
-            </Snackbar>
-          ) : (
-            <></>
-          )
-        }
+        <Snackbar
+          open={isSent}
+          onClose={handleClose}
+          autoHideDuration={5000}
+        >
+          <Alert onClose={handleClose} severity='success'>
+            Your message has been sent!
+          </Alert>
+        </Snackbar>
         <motion.div
           id="form-names"
           viewport={{ once: true }}
@@ -108,7 +101,7 @@ const Contact: NextPage = () => {
           <Stack direction="row" alignItems="center" justifyContent="center" spacing={4} sx={{ maxWidth: "800px", marginInline: "auto" }}>
             {/* First Name */}
             <Stack direction="column" alignItems="flex-start" sx={{ width: "40%" }}>
-              <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
+              <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.primary.contrastText }}>
                 FIRST NAME
               </Typography>
               <TextField
@@ -124,7 +117,7 @@ const Contact: NextPage = () => {
 
             {/* Last Name */}
             <Stack direction="column" alignItems="flex-start" sx={{ width: "40%" }}>
-              <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
+              <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.primary.contrastText }}>
                 LAST NAME
               </Typography>
               <TextField
@@ -143,7 +136,7 @@ const Contact: NextPage = () => {
         <motion.div id="form-details" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "5vh" }}>
           {/* Email */}
           <Stack direction="column" alignItems="flex-start" sx={{ maxWidth: "675px", marginInline: "auto" }}>
-            <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
+            <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.primary.contrastText }}>
               E-MAIL
             </Typography>
             <TextField
@@ -160,7 +153,7 @@ const Contact: NextPage = () => {
 
         <motion.div id="form-details" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "5vh" }}>
           <Stack direction="column" alignItems="flex-start" sx={{ maxWidth: "675px", marginInline: "auto" }}>
-            <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.mode === "dark" ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText }}>
+            <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.primary.contrastText }}>
               MESSAGE
             </Typography>
             <TextField
