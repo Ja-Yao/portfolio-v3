@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import type { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image";
+import axios from "axios";
 import styles from "../styles/Home.module.css"
 
-import { Box, Button, Dialog, DialogActions, DialogContent, Fab, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Alert, Box, Button, Dialog, DialogActions, DialogContent, Fab, FormControl, FormControlLabel, Radio, RadioGroup, Snackbar, Stack, TextField, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { BubbleChartOutlined, CreateOutlined, EmailOutlined, PersonOutlineRounded, WorkOutlineRounded } from "@mui/icons-material";
+import { BubbleChartOutlined, CallOutlined, CreateOutlined, EmailOutlined, LanguageOutlined, PersonOutlineRounded, WorkOutlineRounded } from "@mui/icons-material";
 import Link from "next/link";
 import { nanoid, testimonials } from "../constants/constants";
 
@@ -18,9 +19,13 @@ const Home: NextPage = () => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const [openContactDialog, setOpenContactDialog] = useState(false);
-  const [fullWidth, setFullWidth] = useState(false);
-  const [radio, setRadio] = useState("email");
-  const [disp, setDisp] = useState("start");
+  const [fullWidth, setFullWidth] = useState<boolean>(false);
+  const [radio, setRadio] = useState<string>("email");
+  const [disp, setDisp] = useState<string>("start");
+  const [sent, setSent] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>("success");
+  const [pn, setPn] = useState<string>("");
+  const [contactInfo, setContactInfo] = useState({ firstName: "", lastName: "", link: "" });
 
   const sentence = {
     hidden: { opacity: 1 },
@@ -76,10 +81,65 @@ const Home: NextPage = () => {
     setFullWidth(false);
   }
 
-  const handleSend = () => {
+  const handleSend = async () => {
     setDisp("start");
     setFullWidth(false);
     setOpenContactDialog(false);
+
+    const data = {
+      who: {
+        first_name: contactInfo.firstName,
+        last_name: contactInfo.lastName,
+        email: contactInfo.link
+      },
+      subject: "New Contact Info Submission",
+      body: "Someone sent their contact information and would like to hear from you."
+    };
+
+    await axios.post("https://eoajcc1ncqafa82.m.pipedream.net", data)
+      .then((res) => {
+        setSent(true);
+        setStatus("success");
+      })
+      .catch(e => {
+        alert(e.message);
+        setSent(true);
+        setStatus("error");
+      });
+  }
+
+  const phoneNumberFormatter = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const formatted = formatPhoneNumber(e.target.value);
+    setPn(formatted);
+    setContactInfo({ ...contactInfo, link: formatted });
+  }
+
+  const formatPhoneNumber = (n: string) => {
+    // if input value is falsy eg if the user deletes the input, then just return
+    if (!n) return n;
+
+    // clean the input for any non-digit values.
+    const phoneNumber = n.replace(/[^\d]/g, '');
+
+    // phoneNumberLength is used to know when to apply our formatting for the phone number
+    const phoneNumberLength = phoneNumber.length;
+
+    // we need to return the value with no formatting if its less than four digits
+    // this is to avoid weird behavior that occurs if you  format the area code too early
+    if (phoneNumberLength < 4) return phoneNumber;
+
+    // if phoneNumberLength is greater than 4 and less the 7 we start to return
+    // the formatted number
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+
+    // finally, if the phoneNumberLength is greater then seven, we add the last
+    // bit of formatting and return it.
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6
+    )}-${phoneNumber.slice(6, 10)}`;
   }
 
   return (
@@ -323,72 +383,140 @@ const Home: NextPage = () => {
         </motion.div>
 
         <Dialog fullScreen={fullScreen} fullWidth={fullWidth} maxWidth="sm" open={openContactDialog} onClose={(e) => setOpenContactDialog(false)} PaperProps={{ style: { borderRadius: "28px" } }}>
-          <DialogContent sx={{ backgroundColor: theme.palette.primary.surfaceAt1 }}>
-            <AnimatePresence>
-              {
-                disp === "start" &&
-                <motion.div
-                  initial={{ opacity: 1 }}
-                  exit={{ opacity: 0, }}
-                >
-                  <Stack direction="column" spacing={2}>
-                    <Stack direction="column" sx={{ placeItems: "center" }}>
-                      <EmailOutlined sx={{ color: theme.palette.primary.main }} />
-                      <Typography>
-                        Choose your mode of contact
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
-                        Select the option that works best for you
-                      </Typography>
-                    </Stack>
-                    <FormControl>
-                      <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        value={radio}
-                        onChange={(e) => setRadio((e.target as HTMLInputElement).value)}
-                        name="radio-buttons-group"
-                      >
-                        <FormControlLabel value="email" control={<Radio />} label="Email" />
-                        <FormControlLabel value="phone" control={<Radio />} label="Phone" />
-                        <FormControlLabel value="other" control={<Radio />} label="Other" />
-                      </RadioGroup>
-                    </FormControl>
-                  </Stack>
-                </motion.div>
-              }
-              {
-                disp === "email" &&
-                <motion.div
-                  initial={{ opacity: 0, x: 200 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, }}
-                >
-                  <Stack direction="column" spacing={2}>
-                    <Stack direction="column" sx={{ placeItems: "center" }}>
-                      <EmailOutlined sx={{ color: theme.palette.primary.main }} />
-                      <Typography>
-                        Choose your mode of contact
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
-                        Select the option that works best for you
-                      </Typography>
-                    </Stack>
-                    <FormControl>
-                      <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        value={radio}
-                        onChange={(e) => setRadio((e.target as HTMLInputElement).value)}
-                        name="radio-buttons-group"
-                      >
-                        <FormControlLabel value="email" control={<Radio />} label="Email" />
-                        <FormControlLabel value="phone" control={<Radio />} label="Phone" />
-                        <FormControlLabel value="other" control={<Radio />} label="Other" />
-                      </RadioGroup>
-                    </FormControl>
-                  </Stack>
-                </motion.div>
-              }
-            </AnimatePresence>
+          <DialogContent dividers sx={{ backgroundColor: theme.palette.primary.surfaceAt1 }}>
+            {
+              disp === "start" &&
+              <Stack direction="column" spacing={2}>
+                <Stack direction="column" sx={{ placeItems: "center" }}>
+                  <EmailOutlined sx={{ color: theme.palette.primary.main }} />
+                  <Typography>
+                    Choose your mode of contact
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
+                    Select the option that works best for you
+                  </Typography>
+                </Stack>
+                <FormControl>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    value={radio}
+                    onChange={(e) => setRadio((e.target as HTMLInputElement).value)}
+                    name="radio-buttons-group"
+                  >
+                    <FormControlLabel value="email" control={<Radio />} label="Email" />
+                    <FormControlLabel value="phone" control={<Radio />} label="Phone" />
+                    <FormControlLabel value="other" control={<Radio />} label="Other" />
+                  </RadioGroup>
+                </FormControl>
+              </Stack>
+            }
+            {
+              disp === "email" &&
+              <Stack direction="column" spacing={2}>
+                <Stack direction="column" sx={{ placeItems: "center" }}>
+                  <EmailOutlined sx={{ color: theme.palette.primary.main }} />
+                  <Typography>
+                    Email
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
+                    Please provide your information below
+                  </Typography>
+                </Stack>
+                <TextField
+                  label="First Name"
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ style: { textTransform: 'capitalize', fontFamily: "PT Sans" } }}
+                  placeholder="John"
+                  onChange={e => setContactInfo({ ...contactInfo, link: e.target.value })}
+                />
+                <TextField
+                  label="Last Name"
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ style: { textTransform: 'capitalize', fontFamily: "PT Sans" } }}
+                  placeholder="Doe"
+                  onChange={e => setContactInfo({ ...contactInfo, link: e.target.value })}
+                />
+                <TextField
+                  label="Email Address"
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ style: { fontFamily: "PT Sans" } }}
+                  placeholder="john.doe@gmail.com"
+                  onChange={e => setContactInfo({ ...contactInfo, link: e.target.value })}
+                />
+              </Stack>
+            }
+            {
+              disp === "phone" &&
+              <Stack direction="column" spacing={2}>
+                <Stack direction="column" sx={{ placeItems: "center" }}>
+                  <CallOutlined sx={{ color: theme.palette.primary.main }} />
+                  <Typography>
+                    Phone
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
+                    Please provide your information below
+                  </Typography>
+                </Stack>
+                <TextField
+                  label="First Name"
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ style: { textTransform: 'capitalize', fontFamily: "PT Sans" } }}
+                  placeholder="John"
+                  onChange={e => setContactInfo({ ...contactInfo, link: e.target.value })}
+                />
+                <TextField
+                  label="Last Name"
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ style: { textTransform: 'capitalize', fontFamily: "PT Sans" } }}
+                  placeholder="Doe"
+                  onChange={e => setContactInfo({ ...contactInfo, link: e.target.value })}
+                />
+                <TextField
+                  label="Phone Number"
+                  InputLabelProps={{ shrink: true }}
+                  type="tel"
+                  inputProps={{ style: { fontFamily: "PT Sans" }, pattern: "([0-9]{3})-[0-9]{3}-[0-9]{4}" }}
+                  placeholder="(555) 555-1234"
+                  value={pn}
+                  onChange={e => phoneNumberFormatter(e)}
+                />
+              </Stack>
+            }
+            {
+              disp === "other" &&
+              <Stack direction="column" spacing={2}>
+                <Stack direction="column" sx={{ placeItems: "center" }}>
+                  <LanguageOutlined sx={{ color: theme.palette.primary.main }} />
+                  <Typography>
+                    Other
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
+                    Please provide your information below
+                  </Typography>
+                </Stack>
+                <TextField
+                  label="First Name"
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ style: { textTransform: 'capitalize', fontFamily: "PT Sans" } }}
+                  placeholder="John"
+                  onChange={e => setContactInfo({ ...contactInfo, link: e.target.value })}
+                />
+                <TextField
+                  label="Last Name"
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ style: { textTransform: 'capitalize', fontFamily: "PT Sans" } }}
+                  placeholder="Doe"
+                  onChange={e => setContactInfo({ ...contactInfo, link: e.target.value })}
+                />
+                <TextField
+                  label="Place to reach you"
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ style: { fontFamily: "PT Sans" } }}
+                  placeholder="john.doe@gmail.com"
+                  onChange={e => setContactInfo({ ...contactInfo, link: e.target.value })}
+                />
+              </Stack>
+            }
           </DialogContent>
           <DialogActions sx={{ backgroundColor: theme.palette.primary.surfaceAt1 }}>
             <Button onClick={e => disp === "start" ? setOpenContactDialog(false) : handleBack()} sx={{ color: theme.palette.primary.main }}>
@@ -399,6 +527,29 @@ const Home: NextPage = () => {
             </Button>
           </DialogActions>
         </Dialog>
+
+        <Snackbar
+          open={sent}
+          onClose={() => setSent(false)}
+          autoHideDuration={6000}
+        >
+          {
+            status === "success" ?
+              <Alert
+                onClose={() => setSent(false)}
+                severity="success"
+              >
+                Your info has been sent!
+              </Alert>
+              :
+              <Alert
+                onClose={() => setSent(false)}
+                severity="error"
+              >
+                Something went wrong.
+              </Alert>
+          }
+        </Snackbar>
       </Box>
 
       <Footer />
