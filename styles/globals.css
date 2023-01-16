@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, PT Sans, Helvetica Neue, sans-serif;
+  font-family: PT Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -16,9 +16,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: -apple-system,
-    BlinkMacSystemFont,
-    Nunito,
+  font-family: Nunito,
     Helvetica Neue,
     sans-serif;
 }
