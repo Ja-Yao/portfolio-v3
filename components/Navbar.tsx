@@ -113,7 +113,7 @@ const Navbar: FC<Props> = () => {
 
           <ListItem sx={{ display: 'block' }}>
             <Stack direction="column">
-              <Link href="/work">
+              <Link href="/works">
                 <ListItemButton
                   selected={router.asPath === "/work"}
                   sx={{
