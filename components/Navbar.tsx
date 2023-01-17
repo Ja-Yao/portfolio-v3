@@ -44,7 +44,16 @@ const Navbar: FC<Props> = () => {
     >
       <DrawerHeader>
         <Link href="/contact">
-          <Fab size="medium" sx={{ borderRadius: "16px", backgroundColor: theme.palette.primary.primaryContainer, boxShadow: 0, marginTop: 2, }}>
+          <Fab
+            size="medium"
+            sx={{
+              borderRadius: "16px",
+              backgroundColor: theme.palette.primary.primaryContainer,
+              boxShadow: 0,
+              marginTop: 2,
+              ':hover': { backgroundColor: theme.palette.mode === "dark" ? theme.palette.primary.onPrimary : "#98D481" }
+            }}
+          >
             <CreateOutlined sx={{ color: theme.palette.primary.onPrimaryContainer }} />
           </Fab>
         </Link>
