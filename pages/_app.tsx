@@ -169,18 +169,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         },
         components: {
           MuiButton: {
+            styleOverrides: {
+              root: {
+                borderRadius: "20px"
+              }
+            },
             variants: [
               {
                 props: { variant: "text" },
                 style: {
-                  borderRadius: "20px",
                   color: mode === "dark" ? "white" : "#1a1c18",
                 }
               },
               {
                 props: { variant: "contained" },
                 style: {
-                  borderRadius: "20px",
                   backgroundColor: mode === "dark" ? "#9cd67e" : "#386a20",
                   color: mode === "dark" ? "#113800" : "white"
                 }
@@ -190,7 +193,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           MuiDrawer: {
             styleOverrides: {
               paper: {
-                backgroundColor: mode === "dark" ? "#252b20" : "#edf1e6",
+                backgroundColor: mode === "dark" ? "#272e23" : "#ebefe2",
               }
             }
           },
