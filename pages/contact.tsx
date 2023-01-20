@@ -91,6 +91,24 @@ const Contact: NextPage = () => {
             Your message has been sent!
           </Alert>
         </Snackbar>
+
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+          style={{ width: "100vw", maxWidth: "1500px", marginTop: "7.5vh" }}
+        >
+          <Stack direction='column' spacing={1}>
+            <Typography variant="h2" textAlign='center' sx={{ color: theme.palette.primary.onSurface }}>
+              Contact Me
+            </Typography>
+            <Typography variant="subtitle1" textAlign='center' sx={{ paddingLeft: 1.5, color: theme.palette.primary.onSurface }}>
+              If you'd prefer to use your own mail app, <a href="mailto:yao.ja@northeastern.edu" style={{color: theme.palette.primary.main}}>click here.</a>
+            </Typography>
+          </Stack>
+        </motion.div>
+
         <motion.div
           id="form-names"
           viewport={{ once: true }}
@@ -133,11 +151,17 @@ const Contact: NextPage = () => {
           </Stack>
         </motion.div>
 
-        <motion.div id="form-details" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "5vh" }}>
+        <motion.div
+          id="form-details"
+          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+          style={{ width: "100%", maxWidth: "1500px", marginTop: "3vh" }}>
           {/* Email */}
           <Stack direction="column" alignItems="flex-start" sx={{ maxWidth: "675px", marginInline: "auto" }}>
             <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.primary.contrastText }}>
-              E-MAIL
+              E-MAIL ADDRESS
             </Typography>
             <TextField
               variant='outlined'
@@ -151,7 +175,13 @@ const Contact: NextPage = () => {
           </Stack>
         </motion.div>
 
-        <motion.div id="form-details" viewport={{ once: true }} style={{ width: "100%", maxWidth: "1500px", marginTop: "5vh" }}>
+        <motion.div
+          id="form-details"
+          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+          style={{ width: "100%", maxWidth: "1500px", marginTop: "3vh" }}>
           <Stack direction="column" alignItems="flex-start" sx={{ maxWidth: "675px", marginInline: "auto" }}>
             <Typography variant="body1" fontWeight={700} sx={{ color: theme.palette.primary.contrastText }}>
               MESSAGE
@@ -162,9 +192,9 @@ const Contact: NextPage = () => {
               inputProps={{ style: { fontFamily: "PT Sans" } }}
               fullWidth
               value={body}
+              placeholder="Tell me a bit about yourself & why you're reaching out. I'll get back to you as soon as possible!"
               multiline={true}
               minRows={12}
-              maxRows={20}
               onChange={e => setBody(e.target.value)}
             />
             {
