@@ -100,7 +100,7 @@ export default function About() {
               title='My Journey'
               subheader="A brief overview of the experiences I've had"
               action={
-                <Button variant='outlined' onClick={e => { e.preventDefault(); window.open('https://firebasestorage.googleapis.com/v0/b/portfolio-contact-form-47fb6.appspot.com/o/Jacob-Yao-Resume.pdf?alt=media&token=235d3d8f-4179-4065-b567-a80dd456453e', "_blank") }}>
+                <Button variant='outlined' onClick={e => { e.preventDefault(); window.open('https://firebasestorage.googleapis.com/v0/b/portfolio-contact-form-47fb6.appspot.com/o/Jacob-Yao-Resume.pdf?alt=media&token=9514b507-3a4d-4910-bf48-58539cc12312', "_blank") }}>
                   View my Resume
                 </Button>
               }
