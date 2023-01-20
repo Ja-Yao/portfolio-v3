@@ -204,7 +204,7 @@ const Home: NextPage = () => {
         </motion.div>
 
         { /* Work section */}
-        <motion.div
+        {/* <motion.div
           id="work-section"
           initial="offscreen"
           whileInView="onscreen"
@@ -257,128 +257,138 @@ const Home: NextPage = () => {
               </Stack>
             </Stack>
           </motion.div>
+        </motion.div> */}
 
-          { /* Testimonials section */}
-          <motion.div
-            id="testimonial-section"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true }}
-            style={{ width: "100%", maxWidth: "1500px", marginTop: "30vh" }}
-          >
-            <motion.div variants={works} style={{ backgroundColor: theme.palette.primary.surfaceAt1, borderRadius: "28px", padding: 2 }} >
-              <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
-                {
-                  testimonials.map((t, indx) => (
-                    <React.Fragment key={nanoid()}>
-                      <Stack direction="column" spacing={2} maxWidth="40%">
-                        <AnimatePresence>
-                          <motion.div
-                            initial={{ opacity: 0, scale: 1 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                            style={{ color: theme.palette.primary.contrastText }}
-                          >
-                            <Typography variant="h4">
-                              "{t.impactful}"
-                            </Typography>
-                          </motion.div>
-                          <motion.p
-                            key={nanoid()}
-                            initial={{ opacity: 0, scale: 1 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                            style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
-                          >
-                            "{t.major}"
-                          </motion.p>
-                          <motion.p
-                            key={nanoid()}
-                            initial={{ opacity: 0, scale: 1 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
-                            style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
-                          >
-                            {t.author} <br />
-                            {t.position}, {t.company}
-                          </motion.p>
-                        </AnimatePresence>
-                        <motion.div>
-                          <Link href="/about">
-                            <Fab
-                              variant="extended"
-                              sx={{
-                                boxShadow: 0,
-                                backgroundColor: theme.palette.secondary.primaryContainer,
-                                color: theme.palette.secondary.onPrimaryContainer,
-                                maxWidth: "212px",
-                                borderRadius: "16px",
-                                marginTop: "16px",
-                                ":hover": {
-                                  backgroundColor: theme.palette.primary.surfaceAt4,
-                                }
-                              }}
-                            >
-                              <BubbleChartOutlined sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
-                              Learn more about me
-                            </Fab>
-                          </Link>
+        { /* Testimonials section */}
+        <motion.div
+          id="testimonial-section"
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true }}
+          style={{ width: "100%", maxWidth: "1500px", marginTop: "25vh" }}
+        >
+          <motion.div variants={works} style={{ backgroundColor: theme.palette.primary.surfaceAt1, borderRadius: "28px", padding: 2 }} >
+            <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
+              {
+                testimonials.map((t, indx) => (
+                  <React.Fragment key={nanoid()}>
+                    <Stack direction="column" spacing={2} maxWidth="40%">
+                      <AnimatePresence>
+                        <motion.div
+                          initial={{ opacity: 0, scale: 1 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                          style={{ color: theme.palette.primary.contrastText }}
+                        >
+                          <Typography variant="h4">
+                            "{t.impactful}"
+                          </Typography>
                         </motion.div>
-                      </Stack>
-                      <Image quality={95} src={t.image} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={450} height={450} style={{ borderRadius: "32px" }} />
-                    </React.Fragment>
-                  ))
-                }
-              </Stack>
-            </motion.div>
+                        <motion.p
+                          key={nanoid()}
+                          initial={{ opacity: 0, scale: 1 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                          style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
+                        >
+                          "{t.major}"
+                        </motion.p>
+                        <motion.p
+                          key={nanoid()}
+                          initial={{ opacity: 0, scale: 1 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.67, delay: 0.33, ease: "easeInOut" }}
+                          style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
+                        >
+                          {t.author} <br />
+                          {t.position}, {t.company}
+                        </motion.p>
+                      </AnimatePresence>
+                      <motion.div>
+                        <Link href="/about">
+                          <Fab
+                            variant="extended"
+                            sx={{
+                              boxShadow: 0,
+                              backgroundColor: theme.palette.secondary.primaryContainer,
+                              color: theme.palette.secondary.onPrimaryContainer,
+                              maxWidth: "212px",
+                              borderRadius: "16px",
+                              marginTop: "16px",
+                              ":hover": {
+                                backgroundColor: theme.palette.primary.surfaceAt4,
+                              }
+                            }}
+                          >
+                            <BubbleChartOutlined sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
+                            Learn more about me
+                          </Fab>
+                        </Link>
+                      </motion.div>
+                    </Stack>
+                    <Image quality={95} src={t.image} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={450} height={450} style={{ borderRadius: "32px" }} />
+                  </React.Fragment>
+                ))
+              }
+            </Stack>
           </motion.div>
+        </motion.div>
 
-          {/* Contact section */}
-          <motion.div
-            id="testimonial-section"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true }}
-            style={{ width: "100%", maxWidth: "1500px", marginTop: "30vh" }}
-          >
-            <motion.div variants={works}>
-              <Stack direction='column' spacing={4} sx={{ placeItems: "center" }}>
-                <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={625} height={550} style={{ borderRadius: "32px" }} />
-                <motion.div>
-                  <Typography variant="h3" sx={{ color: theme.palette.primary.contrastText }}>
-                    Interested in learning more about me?
-                  </Typography>
-                </motion.div>
-                <motion.div>
-                  <Stack direction='row' spacing={2} sx={{ placeItems: "center" }}>
-                    <Link href="/contact">
-                      <Button
-                        variant="contained"
-                        sx={{
-                          boxShadow: 0,
-                          backgroundColor: theme.palette.primary.main,
-                          color: theme.palette.primary.onPrimary,
-                          maxWidth: "212px",
-                          height: "56px",
-                          borderRadius: "16px",
-                          ":hover": {
-                            backgroundColor: theme.palette.primary.dark,
-                            color: "white"
-                          }
-                        }}
-                      >
-                        <CreateOutlined sx={{ color: theme.palette.primary.onPrimary, mr: 1 }} />
-                        Send me a message
-                      </Button>
-                    </Link>
-                    <Button variant="outlined" onClick={(e) => setOpenContactDialog(true)} sx={{ maxWidth: "212px", height: "56px", borderRadius: "16px", borderColor: theme.palette.primary.outline }}>
-                      <PersonOutlineRounded sx={{ mr: 1 }} />
-                      Provide contact info
+        {/* Contact section */}
+        <motion.div
+          id="testimonial-section"
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true }}
+          style={{ width: "100%", maxWidth: "1500px", marginTop: "25vh" }}
+        >
+          <motion.div variants={works}>
+            <Stack direction='column' spacing={4} sx={{ placeItems: "center" }}>
+              <div
+                style={{
+                  width: 'min(100% - 2rem, 900px)',
+                  backgroundColor: theme.palette.primary.surfaceAt1,
+                  borderRadius: '28px',
+                  display: 'flex',
+                  justifyContent: "center"
+                }}
+              >
+                <Image quality={90} src={"/undraw_experience_design.svg"} alt="unDraw image from https://undraw.co/illustrations" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={625} height={550} />
+              </div>
+              <motion.div>
+                <Typography variant="h3" sx={{ color: theme.palette.primary.contrastText }}>
+                  Interested in learning more about me?
+                </Typography>
+              </motion.div>
+              <motion.div>
+                <Stack direction='row' spacing={2} sx={{ placeItems: "center" }}>
+                  <Link href="/contact">
+                    <Button
+                      variant="contained"
+                      sx={{
+                        boxShadow: 0,
+                        backgroundColor: theme.palette.primary.main,
+                        color: theme.palette.primary.onPrimary,
+                        maxWidth: "212px",
+                        height: "56px",
+                        borderRadius: "16px",
+                        ":hover": {
+                          backgroundColor: theme.palette.primary.dark,
+                          color: "white"
+                        }
+                      }}
+                    >
+                      <CreateOutlined sx={{ color: theme.palette.primary.onPrimary, mr: 1 }} />
+                      Send me a message
                     </Button>
-                  </Stack>
-                </motion.div>
-              </Stack>
-            </motion.div>
+                  </Link>
+                  <Button variant="outlined" onClick={(e) => setOpenContactDialog(true)} sx={{ maxWidth: "212px", height: "56px", borderRadius: "16px", borderColor: theme.palette.primary.outline }}>
+                    <PersonOutlineRounded sx={{ mr: 1 }} />
+                    Provide contact info
+                  </Button>
+                </Stack>
+              </motion.div>
+            </Stack>
           </motion.div>
         </motion.div>
 
