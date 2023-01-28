@@ -1,34 +1,19 @@
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
+
 
 import { Box, Button, Card, CardContent, CardHeader, Divider, Stack, Typography } from "@mui/material";
-import Grid2 from '@mui/material/Unstable_Grid2';
 import { useTheme } from '@mui/material/styles';
+
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import Image from 'next/image';
 import banner from '../public/banner.png';
 
 
 export default function About() {
   const theme = useTheme();
-  const works: Variants = {
-    offscreen: {
-      y: 300,
-      opacity: 0,
-    },
-    onscreen: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        bounce: 0.2,
-        duration: 0.8,
-        delay: 0.4
-      }
-    }
-  }
 
   return (
     <Box className={styles.container} sx={{ backgroundColor: theme.palette.primary.surface }}>
@@ -81,7 +66,7 @@ export default function About() {
               </Stack>
               <Stack direction="row" spacing={8} sx={{ marginTop: '33%', justifyContent: 'flex-start' }}>
                 <Image src="/typescript.png" alt="Figma logo" width={64} height={64} />
-                <Image src="/nextjs.png" alt="Next.js logo" width={64} height={64} />
+                <Image src="/nextjs.png" alt="Next.js logo" width={64} height={64} style={{filter: theme.palette.mode === "dark" ? "invert(100%)" : "invert(0%)"}} />
                 <Image src="/figma.png" alt="Figma logo" width={64} height={64} />
               </Stack>
             </Stack>
@@ -103,7 +88,7 @@ export default function About() {
                   fontFamily: "PT Sans"
                 }}
               >
-                I began my deep dive into UI/UX in January 2022, where I first learned about core design principles and how to implement them. Over the summer and fall of that year, I participated in a few of the Google UX Design classes. While in these classes, I learned how to research and identify user needs, create user personas, journey maps, and storyboards, generate low-fidelity prototypes, and conduct usability studies. With the tools I've gained, I've been able to improve & create high-fidelity prototypes in Figma, leading to full design implementation in products I've worked on.
+                I began my deep dive into UI/UX in January 2022, where I first learned about core design principles and how to implement them. Over the summer and fall of that year, I participated in a few of the Google UX Design classes. While in these classes, I learned how to research and identify user needs, create user personas, journey maps and storyboards, generate low-fidelity prototypes, and conduct usability studies. With the tools I've gained, I've been able to improve & create high-fidelity prototypes in Figma, leading to full design implementation in products I've worked on.
               </Typography>
             </Stack>
           </Box>
@@ -129,7 +114,7 @@ export default function About() {
                     <Typography variant='subtitle1' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                       Melbourne, Victoria, Australia
                     </Typography>
-                    <Typography variant='caption' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
+                    <Typography variant='caption' fontFamily='PT Sans' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                       July 2019 – November 2019
                     </Typography>
                   </Stack>
@@ -145,7 +130,7 @@ export default function About() {
                     <Typography variant='subtitle1' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                       Boston, Massachusetts
                     </Typography>
-                    <Typography variant='caption' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
+                    <Typography variant='caption' fontFamily='PT Sans' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                       January 2020 – Present
                     </Typography>
                   </Stack>
@@ -161,7 +146,7 @@ export default function About() {
                     <Typography variant='subtitle1' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                       Arlington, Virginia
                     </Typography>
-                    <Typography variant='caption' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
+                    <Typography variant='caption' fontFamily='PT Sans' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                       May 2021 – December 2021
                     </Typography>
                   </Stack>
@@ -177,7 +162,7 @@ export default function About() {
                     <Typography variant='subtitle1' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                       Arlington, Virginia
                     </Typography>
-                    <Typography variant='caption' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
+                    <Typography variant='caption' fontFamily='PT Sans' sx={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                       July 2022 – Present
                     </Typography>
                   </Stack>
@@ -211,7 +196,7 @@ export default function About() {
                   fontFamily: "PT Sans"
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                In my spare time, I enjoy snapping photos as an amateur photographer, playing my ukulele and singing with friends, exprimenting with new recipes, and crafting handmade items while woodworking at home.
               </Typography>
               <Typography
                 sx={{
@@ -219,7 +204,8 @@ export default function About() {
                   fontFamily: "PT Sans"
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                My photography focused on landscapes and architecture in the beginning, but I'm trying to expand the
+                types of photographs I take. As such, I've been pushing myself to take more portrait/slice-of-life photos. Take a look at some of the photos I'm most proud of below!
               </Typography>
             </Stack>
           </Box>
