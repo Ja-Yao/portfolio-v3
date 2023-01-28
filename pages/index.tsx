@@ -154,8 +154,8 @@ const Home: NextPage = () => {
       <Box component={"main"} className={styles.main} >
         {/* Landing section */}
         <motion.div id="landing-section" viewport={{ once: true }} style={{ marginTop: "7.5vh" }}>
-          <Stack direction="row" alignItems="center" justifyContent="space-evenly" >
-            <Stack direction="column" spacing={2} maxWidth="40%">
+          <Stack direction="row" alignItems="center" justifyContent="space-between" >
+            <Stack direction="column" spacing={1} maxWidth="40%">
               <motion.h1
                 variants={sentence}
                 initial="hidden"
@@ -183,22 +183,24 @@ const Home: NextPage = () => {
                   <span lang="en" style={{ color: theme.palette.primary.main }}> Jacob</span>
                 </Typography>
               </motion.div>
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
                 style={{ color: theme.palette.primary.contrastText, paddingTop: "16px" }}
               >
-                I'm a senior at Northeastern University studying Computer Engineering and a minor in Computer Science,
-                with over 2 years industry experience in front-end design and development.
-              </motion.p>
+                <Typography>
+                  I'm a senior at Northeastern University studying Computer Engineering and a minor in Computer Science,
+                  with over 2 years industry experience in front-end design and development.
+                </Typography>
+              </motion.div>
             </Stack>
             <motion.div
               initial={{ opacity: 0, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.67, delay: 0.75, ease: "easeInOut" }}
             >
-              <Image quality={95} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={750} height={660} style={{ borderRadius: "32px" }} />
+              <Image quality={90} src={"/portrait.jpg"} alt="Portrait image" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={750} height={660} style={{ borderRadius: "32px" }} />
             </motion.div>
           </Stack>
         </motion.div>
