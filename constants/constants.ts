@@ -1,6 +1,9 @@
 import { customAlphabet } from 'nanoid'
 
 import bcLogo from '../public/black_cape-logo.png';
+import house from '../public/house.jpg';
+import squirrel from '../public/squirrel.jpg';
+import fed from '../public/fed.jpg';
 
 export const testimonials = [
   // {
@@ -21,3 +24,24 @@ export const testimonials = [
 ];
 
 export const nanoid = customAlphabet('1234567890abcdef', 10);
+
+export const images = [
+  {
+    src: house,
+    alt: "house-on-cliff",
+    location: "Waiheke Island",
+    country: "Auckland, New Zeland"
+  },
+  {
+    src: squirrel,
+    alt: "squirrel",
+    location: "Boston Common",
+    country: "Boston, USA"
+  },
+  {
+    src: fed,
+    alt: "fed-reserve",
+    location: "Federal Reserve Bank of Boston",
+    country: "Boston, USA"
+  },
+]

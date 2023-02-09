@@ -82,6 +82,7 @@
   padding: 1.5rem;
   text-align: left;
   color: inherit;
+  border-radius: 12px;
 }
 
 .card h2 {

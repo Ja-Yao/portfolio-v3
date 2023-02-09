@@ -3,13 +3,18 @@ import styles from '../styles/Home.module.css';
 import { motion } from 'framer-motion';
 
 
-import { Box, Button, Card, CardContent, CardHeader, Divider, Stack, Typography } from "@mui/material";
-import { useTheme } from '@mui/material/styles';
+import { Box, Button, Card, CardContent, CardHeader, CardMedia, Divider, Stack, Typography } from "@mui/material";
+import { useTheme, withStyles } from '@mui/material/styles';
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 import banner from '../public/banner.png';
+import { images } from '../constants/constants';
+import { LocationOnRounded } from '@mui/icons-material';
+import { styled } from '@mui/system';
+
+const FullICard = styled('div')({});
 
 
 export default function About() {
@@ -66,7 +71,7 @@ export default function About() {
               </Stack>
               <Stack direction="row" spacing={8} sx={{ marginTop: '33%', justifyContent: 'flex-start' }}>
                 <Image src="/typescript.png" alt="Figma logo" width={64} height={64} />
-                <Image src="/nextjs.png" alt="Next.js logo" width={64} height={64} style={{filter: theme.palette.mode === "dark" ? "invert(100%)" : "invert(0%)"}} />
+                <Image src="/nextjs.png" alt="Next.js logo" width={64} height={64} style={{ filter: theme.palette.mode === "dark" ? "invert(100%)" : "invert(0%)" }} />
                 <Image src="/figma.png" alt="Figma logo" width={64} height={64} />
               </Stack>
             </Stack>
@@ -209,6 +214,28 @@ export default function About() {
               </Typography>
             </Stack>
           </Box>
+        </Box>
+
+        <Box className={styles.grid} sx={{ backgroundColor: theme.palette.primary.surfaceVariant, borderRadius: "28px" }}>
+          {
+            images.map((img, indx) => (
+              <Card key={indx} className={styles.card} sx={{ position: "relative", height: 600, width: 400 }}>
+                <div>
+                  <CardMedia sx={{ height: "30vh", width: "20vh", pt: 1 }}>
+                    <Image src={img.src} alt={img.alt} fill />
+                  </CardMedia>
+                  <div style={{ position: "absolute", bottom: 10, left: "50%", transform: "translateX(-45%)", width: "100%" }}>
+                    <Typography sx={{ color: "#fdfdf6", zIndex: 1 }}>
+                      {img.location}
+                    </Typography>
+                    <Typography variant="subtitle1" fontFamily="PT Sans" sx={{ color: "#fdfdf6", zIndex: 1 }}>
+                      <LocationOnRounded sx={{ width: theme.typography.subtitle1.fontSize, height: theme.typography.subtitle1.fontSize }} /> {img.country}
+                    </Typography>
+                  </div>
+                </div>
+              </Card>
+            ))
+          }
         </Box>
       </Box>
       <Footer />
