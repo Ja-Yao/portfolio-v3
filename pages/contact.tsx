@@ -105,6 +105,9 @@ const Contact: NextPage = () => {
             <Typography variant="subtitle1" textAlign='center' sx={{ paddingLeft: 1.5, color: theme.palette.primary.onSurface }}>
               If you'd prefer to use your own mail app, <a href="mailto:yao.ja@northeastern.edu" style={{color: theme.palette.primary.main}}>click here.</a>
             </Typography>
+            <Typography color={theme.palette.grey[500]} textAlign='center'>
+              yao.ja@northeastern.edu
+            </Typography>
           </Stack>
         </motion.div>
 
