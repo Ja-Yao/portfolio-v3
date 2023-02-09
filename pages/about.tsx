@@ -14,8 +14,6 @@ import { images } from '../constants/constants';
 import { LocationOnRounded } from '@mui/icons-material';
 import { styled } from '@mui/system';
 
-const FullICard = styled('div')({});
-
 
 export default function About() {
   const theme = useTheme();
@@ -216,7 +214,7 @@ export default function About() {
           </Box>
         </Box>
 
-        <Box className={styles.grid} sx={{ backgroundColor: theme.palette.primary.surfaceVariant, borderRadius: "28px" }}>
+        <Box className={styles.grid} sx={{ mt: 4, backgroundColor: theme.palette.primary.surfaceVariant, borderRadius: "28px" }}>
           {
             images.map((img, indx) => (
               <Card key={indx} className={styles.card} sx={{ position: "relative", height: 600, width: 400 }}>
