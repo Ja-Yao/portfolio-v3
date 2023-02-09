@@ -79,8 +79,7 @@ const Contact: NextPage = () => {
         alignItems: "center",
         width: "min(100% - 2rem, 1500px)",
         marginInline: "auto",
-        overflowX: "hidden",
-        overflowY: "hidden",
+        overflow: "hidden",
       }}>
         <Snackbar
           open={isSent}
@@ -202,7 +201,7 @@ const Contact: NextPage = () => {
                 <Button
                   variant="contained"
                   onClick={handleSubmit}
-                  sx={{ mt: 6, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.onPrimary, borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" } }}
+                  sx={{ mt: 6, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.onPrimary, borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" }, mb: 8 }}
                 >
                   SEND
                 </Button>
@@ -212,7 +211,7 @@ const Contact: NextPage = () => {
                 <Button
                   variant="contained"
                   disabled
-                  sx={{ mt: 6, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.onPrimary, borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" } }}
+                  sx={{ mt: 6, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.onPrimary, borderRadius: "16px", ":hover": { backgroundColor: "#3a7e55" }, mb: 8 }}
                 >
                   SEND
                 </Button>
