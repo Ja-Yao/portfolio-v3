@@ -3,7 +3,7 @@
 import React, { FC, useContext } from "react";
 import Link from "next/link";
 import { Drawer, Fab, IconButton, List, ListItem, ListItemButton, ListItemIcon, Slide, Stack, Typography } from "@mui/material";
-import { CreateOutlined, DarkModeOutlined, HouseRounded, InfoOutlined, LightModeOutlined, WorkOutlineRounded } from "@mui/icons-material";
+import { CreateOutlined, DarkModeOutlined, GitHub, HouseRounded, InfoOutlined, LightModeOutlined, LinkedIn, WorkOutlineRounded } from "@mui/icons-material";
 
 import { styled, useTheme } from '@mui/material/styles';
 import { ColorModeContext } from "../pages/_app";
@@ -151,6 +151,16 @@ const Navbar: FC<Props> = () => {
           </ListItem>
         </List>
         <List>
+          <ListItem sx={{ display: "block" }}>
+            <IconButton aria-label="toggle-theme-button" sx={{ width: '48px', height: '48px', border: `1px solid ${theme.palette.primary.outline}`, placeItems: "center", overflow: "hidden" }} onClick={e => window.open('https://www.linkedin.com/in/yao-j/')}>
+              <LinkedIn sx={{color: theme.palette.primary.onSurfaceVariant}} />
+            </IconButton>
+          </ListItem>
+          <ListItem sx={{ display: "block" }}>
+            <IconButton aria-label="toggle-theme-button" sx={{ width: '48px', height: '48px', border: `1px solid ${theme.palette.primary.outline}`, placeItems: "center", overflow: "hidden" }} onClick={e => window.open('https://github.com/Ja-Yao')}>
+              <GitHub sx={{color: theme.palette.primary.onSurfaceVariant}} />
+            </IconButton>
+          </ListItem>
           <ListItem sx={{ display: "block" }}>
             <IconButton aria-label="toggle-theme-button" ref={containerRef} sx={{ width: '48px', height: '48px', border: `1px solid ${theme.palette.primary.outline}`, placeItems: "center", overflow: "hidden" }} onClick={e => { setClicked(!clicked); colorMode.toggleColorMode(); }} color="inherit">
               <div>
