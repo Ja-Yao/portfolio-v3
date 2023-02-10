@@ -36,7 +36,7 @@ export default function About() {
             placeItems: "center"
           }}
         >
-          <Image quality={90} src={banner} placeholder="blur" alt="banner-image" sizes='(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 1500px' style={{ borderRadius: "28px", gridColumn: 1, gridRow: 1 }} />
+          <Image quality={90} src={banner} placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" alt="banner-image" sizes='(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 1500px' style={{ borderRadius: "28px", gridColumn: 1, gridRow: 1 }} />
           <Typography
             variant="h1"
             textAlign="center"
@@ -101,7 +101,7 @@ export default function About() {
               title='My Journey'
               subheader="A brief overview of the experiences I've had"
               action={
-                <Button variant='outlined' onClick={e => { e.preventDefault(); window.open('https://firebasestorage.googleapis.com/v0/b/portfolio-contact-form-47fb6.appspot.com/o/Jacob-Yao-Resume.pdf?alt=media&token=9514b507-3a4d-4910-bf48-58539cc12312', "_blank") }}>
+                <Button variant='outlined' onClick={e => { e.preventDefault(); window.open('https://firebasestorage.googleapis.com/v0/b/portfolio-contact-form-47fb6.appspot.com/o/Jacob-Yao-Resume.pdf?alt=media&token=db544a4d-b09a-47e7-b5e8-ee9c7f2327d3', "_blank") }}>
                   View my Resume
                 </Button>
               }
@@ -208,7 +208,7 @@ export default function About() {
                 }}
               >
                 My photography focused on landscapes and architecture in the beginning, but I'm trying to expand the
-                types of photographs I take. As such, I've been pushing myself to take more portrait/slice-of-life photos. Take a look at some of the photos I'm most proud of below!
+                types of photographs I take. As such, I've been pushing myself to take more portrait/slice-of-life photos. Take a look at a few of my favorites!
               </Typography>
             </Stack>
           </Box>
@@ -220,7 +220,7 @@ export default function About() {
               <Card key={indx} className={styles.card} sx={{ position: "relative", height: 600, width: 400 }}>
                 <div>
                   <CardMedia sx={{ height: "30vh", width: "20vh", pt: 1 }}>
-                    <Image src={img.src} alt={img.alt} fill />
+                    <Image src={img.src} alt={img.alt} fill placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" loading='lazy' />
                   </CardMedia>
                   <div style={{ position: "absolute", bottom: 10, left: "50%", transform: "translateX(-45%)", width: "100%" }}>
                     <Typography sx={{ color: "#fdfdf6", zIndex: 1 }}>
