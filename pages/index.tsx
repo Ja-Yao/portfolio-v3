@@ -10,7 +10,7 @@ import { useTheme } from "@mui/material/styles";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { BubbleChartOutlined, CallOutlined, CreateOutlined, EmailOutlined, LanguageOutlined, PersonOutlineRounded, WorkOutlineRounded } from "@mui/icons-material";
+import { BubbleChartOutlined, CallOutlined, CreateOutlined, EmailOutlined, InfoOutlined, LanguageOutlined, PersonOutlineRounded, WorkOutlineRounded } from "@mui/icons-material";
 import Link from "next/link";
 import { nanoid, testimonials } from "../constants/constants";
 
@@ -322,8 +322,8 @@ const Home: NextPage = () => {
                               }
                             }}
                           >
-                            <BubbleChartOutlined sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
-                            Learn more about me
+                            <InfoOutlined sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
+                            Learn more
                           </Fab>
                         </Link>
                       </motion.div>
