@@ -19,7 +19,7 @@ export const testimonials = [
     company: "Black Cape",
     image: bcLogo,
     impactful: "Jacob has a knack for UI/UX design.",
-    major: "He was put on the frontend team for Black Cape's Space-Time Intelligence & Reasoning Engine (STIRE), and ended up leading the effort to take the UI from a demo to a production-ready system."
+    major: "He was put on the frontend team [for one of Black Cape's projects], and ended up leading the effort to take the UI from a demo to a production-ready system."
   }
 ];
 
