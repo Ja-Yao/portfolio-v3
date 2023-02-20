@@ -3,8 +3,8 @@ import styles from '../styles/Home.module.css';
 import { motion } from 'framer-motion';
 
 
-import { Box, Button, Card, CardContent, CardHeader, CardMedia, Divider, Stack, Typography } from "@mui/material";
-import { useTheme, withStyles } from '@mui/material/styles';
+import { Box, Button, Card, CardContent, CardHeader, CardMedia, Divider, Stack, Tooltip, Typography } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -13,6 +13,7 @@ import banner from '../public/banner.png';
 import { images } from '../constants/constants';
 import { LocationOnRounded } from '@mui/icons-material';
 import { styled } from '@mui/system';
+import Link from 'next/link';
 
 
 export default function About() {
@@ -51,8 +52,8 @@ export default function About() {
           </Typography>
         </motion.div>
 
-        <Box className={styles.grid} sx={{ mt: 4 }}>
-          <Box className={styles.card} sx={{ maxWidth: '50%' }}>
+        <Box className={styles.grid}>
+          <Box className={styles.card}>
             <Stack direction='column'>
               <Stack direction="column" spacing={1} >
                 <Typography
@@ -67,15 +68,27 @@ export default function About() {
                   User <span style={{ color: theme.palette.primary.main }}>Experience</span>
                 </motion.h1>
               </Stack>
-              <Stack direction="row" spacing={8} sx={{ marginTop: '33%', justifyContent: 'flex-start' }}>
-                <Image src="/typescript.png" alt="Figma logo" width={64} height={64} />
-                <Image src="/nextjs.png" alt="Next.js logo" width={64} height={64} style={{ filter: theme.palette.mode === "dark" ? "invert(100%)" : "invert(0%)" }} />
-                <Image src="/figma.png" alt="Figma logo" width={64} height={64} />
+              <Stack direction="row" spacing={8} sx={{ marginTop: '25%', justifyContent: 'flex-start' }}>
+                <Link href="https://www.typescriptlang.org/">
+                  <Tooltip title="TypeScript">
+                    <Image src="/typescript.png" alt="Figma logo" width={64} height={64} />
+                  </Tooltip>
+                </Link>
+                <Link href="https://nextjs.org/">
+                  <Tooltip title="Next.js">
+                    <Image src="/nextjs.png" alt="Next.js logo" width={64} height={64} style={{ filter: theme.palette.mode === "dark" ? "invert(100%)" : "invert(0%)" }} />
+                  </Tooltip>
+                </Link>
+                <Link href="https://www.figma.com/">
+                  <Tooltip title="Figma">
+                    <Image src="/figma.png" alt="Figma logo" width={64} height={64} />
+                  </Tooltip>
+                </Link>
               </Stack>
             </Stack>
           </Box>
 
-          <Box className={styles.card} sx={{ maxWidth: '50%' }}>
+          <Box className={styles.card} >
             <Stack direction="column" spacing={2}>
               <Typography
                 sx={{
@@ -96,7 +109,7 @@ export default function About() {
             </Stack>
           </Box>
 
-          <Card elevation={0} sx={{ mt: 14, mb: 16, backgroundColor: theme.palette.primary.surfaceAt1, borderRadius: "28px", padding: 2 }}>
+          <Card elevation={0} sx={{ backgroundColor: theme.palette.primary.surfaceAt1, borderRadius: "28px", padding: 2, gridColumn: "1 / -1" }}>
             <CardHeader
               title='My Journey'
               subheader="A brief overview of the experiences I've had"
@@ -174,7 +187,7 @@ export default function About() {
             </CardContent>
           </Card>
 
-          <Box className={styles.card} sx={{ maxWidth: '50%' }}>
+          <Box className={styles.card} >
             <Stack direction="column" spacing={1}>
               <Typography style={{ color: theme.palette.primary.contrastText }} >
                 My Interests
@@ -191,7 +204,7 @@ export default function About() {
             </Stack>
           </Box>
 
-          <Box className={styles.card} sx={{ maxWidth: '50%' }}>
+          <Box className={styles.card} >
             <Stack direction="column" spacing={1}>
               <Typography
                 sx={{
@@ -212,28 +225,30 @@ export default function About() {
               </Typography>
             </Stack>
           </Box>
-        </Box>
 
-        <Box className={styles.grid} sx={{ mt: 4, backgroundColor: theme.palette.primary.surfaceVariant, borderRadius: "28px" }}>
-          {
-            images.map((img, indx) => (
-              <Card key={indx} className={styles.card} sx={{ position: "relative", height: 600, width: 400 }}>
-                <div>
-                  <CardMedia sx={{ height: "30vh", width: "20vh", pt: 1 }}>
-                    <Image src={img.src} alt={img.alt} fill placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" loading='lazy' />
-                  </CardMedia>
-                  <div style={{ position: "absolute", bottom: 10, left: "50%", transform: "translateX(-45%)", width: "100%" }}>
-                    <Typography sx={{ color: "#fdfdf6", zIndex: 1 }}>
-                      {img.location}
-                    </Typography>
-                    <Typography variant="subtitle1" fontFamily="PT Sans" sx={{ color: "#fdfdf6", zIndex: 1 }}>
-                      <LocationOnRounded sx={{ width: theme.typography.subtitle1.fontSize, height: theme.typography.subtitle1.fontSize }} /> {img.country}
-                    </Typography>
+          <Box className={styles.grid3} sx={{ backgroundColor: theme.palette.primary.surfaceVariant, borderRadius: "28px", gridColumn: "1 / -1" }}>
+            {
+              images.map((img, indx) => (
+                <div key={indx} style={{display: "flex", justifyContent: "center"}}>
+                  <Card className={styles.card} elevation={0} sx={{ position: "relative", height: 480, width: 320 }}>
+                  <div>
+                    <CardMedia>
+                      <Image src={img.src} alt={img.alt} fill placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" loading='lazy' />
+                    </CardMedia>
+                    <div style={{ position: "absolute", bottom: 10, left: "50%", transform: "translateX(-45%)", width: "100%" }}>
+                      <Typography sx={{ color: "#fdfdf6", zIndex: 1 }}>
+                        {img.location}
+                      </Typography>
+                      <Typography variant="subtitle1" fontFamily="PT Sans" sx={{ color: "#fdfdf6", zIndex: 1 }}>
+                        <LocationOnRounded sx={{ width: theme.typography.subtitle1.fontSize, height: theme.typography.subtitle1.fontSize }} /> {img.country}
+                      </Typography>
+                    </div>
                   </div>
+                </Card>
                 </div>
-              </Card>
-            ))
-          }
+              ))
+            }
+          </Box>
         </Box>
       </Box>
       <Footer />

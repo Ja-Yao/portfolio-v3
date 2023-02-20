@@ -1,6 +1,7 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from "next/router";
+import Image from 'next/image';
 import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
 
@@ -13,18 +14,18 @@ export default function Custom404() {
       <Navbar />
       <Box component={"main"} id="404-content" sx={{ height: "100vh", width: "min(100% - 2rem, 1500px)", marginInline: "auto", placeContent: "center" }} >
         <Stack direction="column" spacing={1} sx={{ height: "inherit", justifyContent: 'center', alignItems: 'center' }}>
-          <Typography variant="h6" textAlign="center" sx={{ color: theme.palette.primary.main }} >
-            404
-          </Typography>
+          <Box
+            display='flex'
+            justifyContent='center'
+            sx={{
+              width: 'min(100% - 2rem, 900px)',
+            }}
+          >
+            <Image quality={90} src={"/undraw_lost.svg"} alt="unDraw image from https://undraw.co/illustrations" placeholder="blur" blurDataURL="/1x1-d9d9d97f.png" width={400} height={400} />
+          </Box>
           <Typography variant="h3" textAlign="center" sx={{ color: theme.palette.primary.onSurface }}>
-            Page Not Found
+            Sorry, but we can't find this page.
           </Typography>
-          <Typography textAlign="center" sx={{ color: theme.palette.grey[500] }}>
-            Sorry, we couldn't find the page you're looking for.
-          </Typography>
-          <Button variant='outlined' onClick={() => router.back()}>
-            Go Back
-          </Button>
         </Stack>
       </Box>
     </Box>
