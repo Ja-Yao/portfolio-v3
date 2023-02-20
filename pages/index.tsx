@@ -307,7 +307,7 @@ const Home: NextPage = () => {
                         </motion.p>
                       </AnimatePresence>
                       <motion.div>
-                        <Link href="/about">
+                        <Link href="/work/stire">
                           <Fab
                             variant="extended"
                             sx={{
@@ -322,7 +322,7 @@ const Home: NextPage = () => {
                               }
                             }}
                           >
-                            <InfoOutlined sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
+                            <WorkOutlineRounded sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
                             Learn more
                           </Fab>
                         </Link>
