@@ -166,12 +166,12 @@ const Navbar: FC<Props> = () => {
               <div>
                 <Slide direction="up" appear={false} in={clicked} timeout={{ enter: theme.transitions.duration.enteringScreen, exit: 25}} container={containerRef.current} mountOnEnter unmountOnExit >
                   <div style={{ width: "48px", height: "48px", borderRadius: "100px" }}>
-                    <LightModeOutlined sx={{ color: theme.palette.grey[400], marginTop: "11px" }} />
+                    <LightModeOutlined sx={{ color: theme.palette.primary.onSurfaceVariant, marginTop: "11px" }} />
                   </div>
                 </Slide>
                 <Slide direction="down" appear={false} in={!clicked} timeout={{ enter: theme.transitions.duration.enteringScreen, exit: 25}} container={containerRef.current} mountOnEnter unmountOnExit >
                   <div style={{ width: "48px", height: "48px", borderRadius: "100px" }}>
-                    <DarkModeOutlined sx={{ color: theme.palette.grey[600], marginTop: "11px" }} />
+                    <DarkModeOutlined sx={{ color: theme.palette.primary.onSurfaceVariant, marginTop: "11px" }} />
                   </div>
                 </Slide>
               </div>
