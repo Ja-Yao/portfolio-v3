@@ -12,8 +12,7 @@
   align-items: center;
   width: min(100% - 2rem, 1500px);
   margin-inline: auto;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   margin-bottom: 20vh;
 }
 
@@ -69,12 +68,21 @@
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
-.grid {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  max-width: 1400px;
+.grid, .grid3 {
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: minmax(100px, auto);
+  width: min(100% - 2rem, 1300px);
+}
+
+@media (min-width: 40rem) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .card {
