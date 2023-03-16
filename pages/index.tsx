@@ -10,7 +10,7 @@ import { useTheme } from "@mui/material/styles";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { BubbleChartOutlined, CallOutlined, CreateOutlined, EmailOutlined, InfoOutlined, LanguageOutlined, PersonOutlineRounded, WorkOutlineRounded } from "@mui/icons-material";
+import { Article, BubbleChartOutlined, CallOutlined, CreateOutlined, EmailOutlined, InfoOutlined, LanguageOutlined, PersonOutlineRounded, WorkOutlineRounded } from "@mui/icons-material";
 import Link from "next/link";
 import { nanoid, testimonials } from "../constants/constants";
 
@@ -194,6 +194,26 @@ const Home: NextPage = () => {
                   with over 2 years industry experience in front-end design and development.
                 </Typography>
               </motion.div>
+              <div>
+                <Fab
+                  onClick={e => { e.preventDefault(); window.open('https://firebasestorage.googleapis.com/v0/b/portfolio-contact-form-47fb6.appspot.com/o/Jacob-Yao-Resume.pdf?alt=media&token=db544a4d-b09a-47e7-b5e8-ee9c7f2327d3', "_blank") }}
+                  variant="extended"
+                  sx={{
+                    boxShadow: 0,
+                    backgroundColor: theme.palette.secondary.primaryContainer,
+                    color: theme.palette.secondary.onPrimaryContainer,
+                    maxWidth: "212px",
+                    borderRadius: "16px",
+                    marginTop: "16px",
+                    ":hover": {
+                      backgroundColor: theme.palette.primary.surfaceAt4,
+                    }
+                  }}
+                >
+                  <Article sx={{ color: theme.palette.secondary.onPrimaryContainer, mr: 1 }} />
+                  View my resume
+                </Fab>
+              </div>
             </Stack>
             <motion.div
               initial={{ opacity: 0, scale: 1 }}
